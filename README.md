@@ -1,0 +1,2 @@
+# KrateLabs-Server
+KrateLabs Server
