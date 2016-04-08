@@ -7,6 +7,8 @@
 ```bash
 $ git clone git@github.com:KrateLabs/KrateLabs-App.git
 $ cd KrateLabs-App
+$ nodeenv env
+$ . ./env/bin/activate
 $ npm install
 $ npm start
 ```
