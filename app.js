@@ -1,46 +1,17 @@
-import { createDevTools } from 'redux-devtools'
-import LogMonitor from 'redux-devtools-log-monitor'
-import DockMonitor from 'redux-devtools-dock-monitor'
-
 import React from 'react'
-import ReactDOM from 'react-dom'
-import { createStore, combineReducers } from 'redux'
-import { Provider } from 'react-redux'
-import { Router, Route, IndexRoute, browserHistory } from 'react-router'
-import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
+import { render } from 'react-dom'
+import { Router, Route, hashHistory, IndexRoute } from 'react-router'
+import { App, Repos, About, Home, NotFound } from './components'
+import './assets/bootstrap-3.3.6/css/bootstrap.min.css'
+import './assets/bootstrap-3.3.6/css/bootstrap-theme.min.css'
 
-import * as reducers from './reducers'
-import { App, Home, Foo, Bar } from './components'
-
-const reducer = combineReducers({
-  ...reducers,
-  routing: routerReducer
-})
-
-const DevTools = createDevTools(
-  <DockMonitor toggleVisibilityKey="ctrl-h" changePositionKey="ctrl-q">
-    <LogMonitor theme="tomorrow" preserveScrollTop={false} />
-  </DockMonitor>
-)
-
-const store = createStore(
-  reducer,
-  DevTools.instrument()
-)
-const history = syncHistoryWithStore(browserHistory, store)
-
-ReactDOM.render(
-  <Provider store={store}>
-    <div>
-      <Router history={history}>
-        <Route path="/" component={App}>
-          <IndexRoute component={Home}/>
-          <Route path="foo" component={Foo}/>
-          <Route path="bar" component={Bar}/>
-        </Route>
-      </Router>
-      <DevTools />
-    </div>
-  </Provider>,
-  document.getElementById('mount')
-)
+render((
+  <Router history={hashHistory}>
+    <Route path="/" component={App}>
+      <IndexRoute component={Home} />
+      <Route path="/repos" component={Repos}/>
+      <Route path="/about" component={About}/>
+      <Route path="*" component={NotFound} />
+    </Route>
+  </Router>
+), document.getElementById('app'))

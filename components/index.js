@@ -1,4 +1,4 @@
 export App from './App'
+export About from './About'
+export Repos from './Repos'
 export Home from './Home'
-export Foo from './Foo'
-export Bar from './Bar'
