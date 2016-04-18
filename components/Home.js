@@ -1,27 +1,43 @@
 import React from 'react'
 import { Input } from 'react-bootstrap'
+import { Link } from 'react-router'
 
 class Home extends React.Component {
   constructor(props) {
     super(props)
     this.handleChange = this.handleChange.bind(this)
     this.getLocation = this.getLocation.bind(this)
+    this.handleMouseEnter = this.handleMouseEnter.bind(this)
+    this.handleMouseLeave = this.handleMouseLeave.bind(this)
     this.state = {
-      value: ''
+      value: '',
+      formatted_address: 'Toronto, ON'
     }
   }
 
-  validationState() {
-    let length = this.state.value.length
-    if (length > 10) return 'success'
-    else if (length > 5) return 'warning'
-    else if (length > 0) return 'error'
+  handleMouseEnter() {
+    this.setState({ hover: true })
+  }
+
+  handleMouseLeave() {
+    this.setState({ hover: false })
   }
 
   getLocation(location) {
     let url = `https://maps.googleapis.com/maps/api/geocode/json?address=${ location }`
     fetch(url).then(response => response.json())
-      .then(data => this.setState({ locations: data }))
+      .then(data => {
+        let result = data.results[0]
+        console.log(result)
+        this.setState({
+          'results': data.results,
+          'formatted_address': result.formatted_address,
+          'northeast': result.geometry.bounds.northeast,
+          'southwest': result.geometry.bounds.southwest,
+          'lat': result.geometry.location.lat,
+          'lng': result.geometry.location.lng
+        })
+      })
       .catch(error => console.log("Error found"))
   }
 
@@ -32,7 +48,15 @@ class Home extends React.Component {
   }
 
   render() {
-    const styles = {}
+    const styles = {
+      result: {
+        filter: `drop-shadow(1.5px 1.5px 0px black) drop-shadow(1px 1px 10px rgba(0, 0, 0, 0.60))`,
+        WebkitFilter: `drop-shadow(1.5px 1.5px 0px black) drop-shadow(1px 1px 10px rgba(0, 0, 0, 0.60))`,
+        color: (this.state.hover) ? `rgb(102, 197, 218)` : `rgb(255, 255, 255)`,
+        textAlign: 'center',
+        textDecoration: 'none'
+      }
+    }
     return (
       <div>
         <Input
@@ -40,15 +64,22 @@ class Home extends React.Component {
           type="text"
           value={ this.state.value }
           placeholder="Choose a city..."
-          bsStyle={ this.validationState() }
           hasFeedback
           ref="input"
           groupClassName="group-class"
           labelClassName="label-class"
           onChange={ this.handleChange }
         />
-        { this.state.locations && this.state.locations.results[0].formatted_address }
-      </div>
+      <a href='/map' style={{ textDecoration: 'none' }}>
+        <h1
+          style={ styles.result }
+          onMouseEnter={ this.handleMouseEnter }
+          onMouseLeave={ this.handleMouseLeave }
+        >
+          { this.state.formatted_address }
+        </h1>
+      </a>
+    </div>
   )}
 }
 
