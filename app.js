@@ -2,8 +2,6 @@ import React from 'react'
 import { render } from 'react-dom'
 import { Router, Route, hashHistory, IndexRoute } from 'react-router'
 import { App, Repos, About, Home, NotFound } from './components'
-import './assets/bootstrap-3.3.6/css/bootstrap.min.css'
-import './assets/bootstrap-3.3.6/css/bootstrap-theme.min.css'
 
 render((
   <Router history={hashHistory}>
