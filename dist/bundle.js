@@ -38730,27 +38730,27 @@
 	
 	var _Logo3 = _interopRequireDefault(_Logo2);
 	
-	var _Search2 = __webpack_require__(424);
+	var _Search2 = __webpack_require__(425);
 	
 	var _Search3 = _interopRequireDefault(_Search2);
 	
-	var _utils = __webpack_require__(425);
+	var _utils = __webpack_require__(426);
 	
 	var _utils2 = _interopRequireDefault(_utils);
 	
-	var _NorthArrow2 = __webpack_require__(426);
+	var _NorthArrow2 = __webpack_require__(427);
 	
 	var _NorthArrow3 = _interopRequireDefault(_NorthArrow2);
 	
-	var _TitlView2 = __webpack_require__(427);
+	var _TitlView2 = __webpack_require__(428);
 	
 	var _TitlView3 = _interopRequireDefault(_TitlView2);
 	
-	var _ZoomIn2 = __webpack_require__(428);
+	var _ZoomIn2 = __webpack_require__(429);
 	
 	var _ZoomIn3 = _interopRequireDefault(_ZoomIn2);
 	
-	var _ZoomOut2 = __webpack_require__(429);
+	var _ZoomOut2 = __webpack_require__(430);
 	
 	var _ZoomOut3 = _interopRequireDefault(_ZoomOut2);
 	
@@ -55013,7 +55013,7 @@
 	
 	      return _react2.default.createElement('img', {
 	        style: style,
-	        src: this.props.src,
+	        src: __webpack_require__(424),
 	        width: this.props.width
 	      });
 	    }
@@ -55023,7 +55023,6 @@
 	}(_react2.default.Component);
 	
 	Logo.defaultProps = {
-	  src: "../images/logo_home.png",
 	  width: 150,
 	  left: 13,
 	  bottom: 5
@@ -55032,6 +55031,12 @@
 
 /***/ },
 /* 424 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__.p + "70d670fa57df46aacd999dd3db5d8556.png";
+
+/***/ },
+/* 425 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(console) {'use strict';
@@ -55048,7 +55053,7 @@
 	
 	var _reactBootstrap = __webpack_require__(165);
 	
-	var _utils = __webpack_require__(425);
+	var _utils = __webpack_require__(426);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -55204,7 +55209,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ },
-/* 425 */
+/* 426 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -55263,7 +55268,7 @@
 	};
 
 /***/ },
-/* 426 */
+/* 427 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -55401,7 +55406,7 @@
 	exports.default = NorthArrow;
 
 /***/ },
-/* 427 */
+/* 428 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -55533,7 +55538,7 @@
 	exports.default = TiltView;
 
 /***/ },
-/* 428 */
+/* 429 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -55651,7 +55656,7 @@
 	exports.default = ZoomIn;
 
 /***/ },
-/* 429 */
+/* 430 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';

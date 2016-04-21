@@ -3,7 +3,6 @@ import React from 'react'
 export default class Logo extends React.Component {
 
   static defaultProps = {
-    src: "../images/logo_home.png",
     width: 150,
     left: 13,
     bottom: 5
@@ -29,7 +28,7 @@ export default class Logo extends React.Component {
     return (
       <img
         style={ style }
-        src={ this.props.src }
+        src={ require("../images/logo_home.png") }
         width={ this.props.width }
       />
     )

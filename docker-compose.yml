@@ -3,7 +3,6 @@ nginx:
   image: nginx:alpine
   volumes:
     - ./index.html:/usr/share/nginx/html/index.html
-    - ./dist/bundle.js:/usr/share/nginx/html/assets/bundle.js
-    - ./dist/bundle.js.map:/usr/share/nginx/html/assets/bundle.js.map
+    - ./dist:/usr/share/nginx/html/assets
   ports:
     - 80:80
