@@ -29,7 +29,6 @@ module.exports = {
     root: path.join(__dirname, 'node_modules')
   },
   module: {
-    noParse: /node_modules\/json-schema\/lib\/validate\.js/,
     loaders: [
       {
         test: /\.jsx?$/,
@@ -39,14 +38,6 @@ module.exports = {
       }, {
         test: /\.json$/,
         loader: 'json'
-      }, {
-        test: /\.js$/,
-        include: path.resolve(__dirname, 'node_modules/mapbox-gl/js/render/shaders.js'),
-        loader: 'transform/cacheable?brfs'
-      }, {
-        test: /\.js$/,
-        include: path.resolve(__dirname, 'node_modules/webworkify/index.js'),
-        loader: 'worker'
       }, {
         test: /\.css$/,
         loader: 'style-loader!css-loader'
@@ -75,10 +66,7 @@ module.exports = {
     console: '{}'
   },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false }, comments: false}),
-    new webpack.optimize.DedupePlugin(),
-    new webpack.DefinePlugin({
-      __DEV__: true
-    })
+    //new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false }, comments: false}),
+    //new webpack.optimize.DedupePlugin(),
   ]
 }
