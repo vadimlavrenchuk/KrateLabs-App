@@ -1,5 +1,5 @@
 import React from 'react'
-import { Input, Button, Tooltip, OverlayTrigger } from 'react-bootstrap'
+import { Input, Button } from 'react-bootstrap'
 import { torontoGeometry } from './utils'
 
 export default class Search extends React.Component {
@@ -83,10 +83,6 @@ export default class Search extends React.Component {
       }
     }
 
-    const tooltip = (
-      <Tooltip id='location'><strong>Go to location!</strong></Tooltip>
-    )
-
     return (
       <div style={ styles.input }>
         <Input
@@ -102,11 +98,9 @@ export default class Search extends React.Component {
           onChange={ this.handleChange }
         />
         <div style={ styles.textBox }>
-          <OverlayTrigger placement='bottom' overlay={ tooltip }>
-            <Button style={ styles.text } onClick={ this.handleClick }>
-              { this.state.formatted_address }
-            </Button>
-          </OverlayTrigger>
+          <Button style={ styles.text } onClick={ this.handleClick }>
+            { this.state.formatted_address }
+          </Button>
         </div>
       </div>
     )

@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { Input, Grid, Row, Col, Button } from 'react-bootstrap'
-import { Map, Logo, Search, getBounds, NorthArrow, TitlView, ZoomIn, ZoomOut } from './components'
+import { Map, Logo, Search, getBounds, NorthArrow, TitlView, ZoomIn, ZoomOut, Options } from './components'
 import classNames from 'classnames'
 
 class App extends React.Component {
@@ -30,7 +30,7 @@ class App extends React.Component {
       },
       'topRight': {
         height: this.state.maxHeight * 0.50,
-        backgroundColor: 'rgb(80, 100, 142)',
+        backgroundColor: 'rgb(10, 20, 35)',
         padding: 0
       },
       'bottomRight': {
@@ -42,6 +42,7 @@ class App extends React.Component {
     return (
       <Grid fluid={true}>
         <Row style={styles.row}>
+          { /* Map */ }
           <Col xs={12} sm={6} md={8} style={styles.left}>
             <Map bounds={ this.state.bounds }>
               <NorthArrow />
@@ -52,7 +53,12 @@ class App extends React.Component {
             <Search onClick={ this.handleSearchClick }/>
             <Logo />
           </Col>
-          <Col xs={12} sm={6} md={4} style={styles.topRight}><h1>Options</h1></Col>
+          { /* Options */ }
+          <Col xs={12} sm={6} md={4} style={styles.topRight}>
+            <Options />
+          </Col>
+
+          { /* Checkout */ }
           <Col xs={12} sm={6} md={4} style={styles.bottomRight}><h1>Checkout</h1></Col>
         </Row>
       </Grid>
