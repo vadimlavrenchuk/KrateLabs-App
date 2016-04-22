@@ -29,9 +29,10 @@ class App extends React.Component {
         padding: 0
       },
       'topRight': {
-        height: this.state.maxHeight * 0.50,
+        minHeight: this.state.maxHeight * 0.50,
         backgroundColor: 'rgb(10, 20, 35)',
-        padding: 0
+        padding: 0,
+        paddingBottom: '50px'
       },
       'bottomRight': {
         height: this.state.maxHeight * 0.50,

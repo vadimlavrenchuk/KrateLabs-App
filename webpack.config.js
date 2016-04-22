@@ -66,7 +66,7 @@ module.exports = {
     console: '{}'
   },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false }, comments: false}),
-    new webpack.optimize.DedupePlugin(),
+    //new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false }, comments: false}),
+    //new webpack.optimize.DedupePlugin(),
   ]
 }
