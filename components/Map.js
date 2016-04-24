@@ -40,7 +40,8 @@ export default class Map extends React.Component {
     const styles = {
       map: {
         height: '100%',
-        width: '100%'
+        width: '100%',
+        position: 'absolute'
       }
     }
     return (

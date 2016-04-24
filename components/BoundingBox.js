@@ -18,7 +18,7 @@ export default class BoundingBox extends React.Component {
         left:  this.props.orientation == 1 ? '10%' : '25%',
         height: this.props.orientation == 1 ? '50%' : '80%',
         top: this.props.orientation == 1 ? '25%' : '10%',
-        zIndex: 30,
+        zIndex: 5,
         border: '3px',
         borderStyle: 'solid',
         borderColor: 'rgba(255, 0, 0, 0.70)',

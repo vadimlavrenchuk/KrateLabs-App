@@ -10,6 +10,7 @@ class App extends React.Component {
     super(props)
     this.handleSearchClick = this.handleSearchClick.bind(this)
     this.handleOrientation = this.handleOrientation.bind(this)
+    this.handleResize = this.handleResize.bind(this)
     this.state = {
       maxHeight: window.innerHeight,
       orientation: 1
@@ -65,7 +66,7 @@ class App extends React.Component {
         <Row style={styles.row}>
           { /* Map */ }
           <Col xs={12} sm={6} md={8} style={styles.left}>
-            <Map bounds={ this.state.bounds }>
+            <Map bounds={ this.state.bounds } height={ this.maxHeight }>
               <BoundingBox orientation={ this.state.orientation }/>
               <NorthArrow />
               <TitlView />
