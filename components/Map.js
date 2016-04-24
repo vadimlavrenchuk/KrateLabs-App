@@ -36,12 +36,6 @@ export default class Map extends React.Component {
     this.setState({ active: true })
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.bounds) {
-      map.fitBounds(nextProps.bounds)
-    }
-  }
-
   render() {
     const styles = {
       map: {

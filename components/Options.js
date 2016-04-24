@@ -10,7 +10,8 @@ export default class Options extends React.Component {
     this.state = {
       orientation: 1,
       canvas: 2,
-      size: 2
+      size: 2,
+      validEmail: false
     }
     this.handleClickOrientation = this.handleClickOrientation.bind(this)
     this.handleClickCanvas = this.handleClickCanvas.bind(this)
@@ -34,8 +35,26 @@ export default class Options extends React.Component {
 
   }
 
+  getPrice() {
+    let basePrice = 280
+    let price = basePrice
+
+    // Size
+    if (this.state.size == 1) { price = price * 0.6 }
+    else if (this.state.size == 2) { price = price * 1 }
+    else if (this.state.size == 3) { price = price * 1.4 }
+
+    // Canvas
+    if (this.state.canvas == 1) { price = price * 0.4 }
+    else if (this.state.canvas == 2) { price = price * 1 }
+    else if (this.state.canvas == 3) { price = price * 2 }
+
+    return price
+  }
+
   handleClickOrientation(event) {
     this.setState({ orientation: event })
+    this.props.handleOrientation(event)
   }
 
   handleClickSize(event) {
@@ -54,6 +73,10 @@ export default class Options extends React.Component {
       },
       title: {
         paddingTop: '50px'
+      },
+      price: {
+        color: 'rgb(152, 197, 247)',
+        textShadow: '0 0 0.3em #777'
       }
     }
 
@@ -126,6 +149,10 @@ export default class Options extends React.Component {
               onClick={ () => this.handleClickCanvas(3) }
               block>Metal</Button>
           </Col>
+
+          { /* Price */ }
+          <h3 style={ styles.title }>Total Cost</h3>
+          <h1 style={ styles.price }>${ this.getPrice() }</h1>
         </Row>
       </Grid>
     )
