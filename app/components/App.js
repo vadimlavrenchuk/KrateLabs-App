@@ -29,10 +29,6 @@ export default class App extends Component {
     }
   }
 
-  componentWillReact() {
-    console.log("I will re-render, since the height has changed!");
-  }
-
   handleOrientation(orientation) {
     this.setState({
       orientation: orientation
@@ -59,13 +55,9 @@ export default class App extends Component {
         padding: 0,
         margin: 0
       },
-      'topRight': {
+      'right': {
         backgroundColor: 'rgb(10, 20, 35)',
-        padding: 0,
-        paddingBottom: '50px'
-      },
-      'bottomRight': {
-        backgroundColor: 'rgb(10, 20, 35)',
+        overflow: 'scroll',
         padding: 0,
         paddingBottom: '50px'
       }
@@ -73,8 +65,9 @@ export default class App extends Component {
     return (
       <Grid fluid={true} style={ styles.container }>
         <Row style={styles.row}>
+
           { /* Map */ }
-          <Col xs={12} sm={6} md={8} style={ styles.left }>
+          <Col xs={12} sm={12} md={8} style={ styles.left }>
             <Map bounds={ this.state.bounds }>
               <BoundingBox orientation={ this.state.orientation }/>
               <NorthArrow />
@@ -85,13 +78,10 @@ export default class App extends Component {
             <Search onClick={ this.handleSearchClick }/>
             <Logo />
           </Col>
-          { /* Options */ }
-          <Col xs={12} sm={6} md={4} style={styles.topRight}>
-            <Options handleOrientation={ this.handleOrientation } />
-          </Col>
 
-          { /* Checkout */ }
-          <Col xs={12} sm={6} md={4} style={styles.bottomRight}>
+          { /* Options */ }
+          <Col xs={12} sm={12} md={4} style={styles.right}>
+            <Options handleOrientation={ this.handleOrientation } />
             <Checkout />
           </Col>
         </Row>
