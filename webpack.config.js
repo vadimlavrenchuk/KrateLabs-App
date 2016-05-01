@@ -1,18 +1,16 @@
-'use strict'
 var path = require('path')
 var webpack = require('webpack')
 
-// Webpack Guides
-// http://survivejs.com/webpack/loading-css/
-
 module.exports = {
-  target: 'web',
+  context: path.join(__dirname, './app'),
   debug: true,
   devtool: 'source-map',
-  entry: './app.js',
+  entry: {
+    jsx: './index.js',
+    html: './index.html'
+  },
   output: {
-      path: path.join(__dirname, 'dist'),
-      publicPath: '/assets/',
+      path: path.join(__dirname, './assets'),
       filename: 'bundle.js'
   },
   resolve: {
@@ -29,44 +27,47 @@ module.exports = {
     root: path.join(__dirname, 'node_modules')
   },
   module: {
-    loaders: [
+  loaders: [
       {
-        test: /\.jsx?$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/,
-        query: { presets: ['es2015', 'react', 'stage-0'] }
-      }, {
-        test: /\.json$/,
-        loader: 'json'
-      }, {
-        test: /\.css$/,
-        loader: 'style-loader!css-loader'
-      }, {
-        test: /\.svg$/,
-        loader: 'svg-loader'
-      }, {
-        test: /\.(eot|ttf|wav|mp3|woff2)$/,
-        loader: 'file-loader',
-      }, {
-        test: /\.(png|jpg|jpeg|gif|woff)$/,
-        loader: 'url-loader?limit=8192'
-      }
+        test: /\.js$/,
+        include: path.resolve(__dirname, 'node_modules/mapbox-gl/js/render/painter/use_program.js'),
+        loader: 'transform/cacheable?brfs'
+      },
+      {
+        test: /\.js$/,
+        include: path.resolve(__dirname, 'node_modules/mapbox-gl/js/render/shaders.js'),
+        loader: 'transform/cacheable?brfs'
+      },
+      { test: /\.jsx?$/, loader: 'babel-loader', exclude: /node_modules/ },
+      { test: /\.json$/, loader: 'json' },
+      { test: /\.css$/, loader: 'style-loader!css-loader' },
+      { test: /\.(woff|woff2)$/, loader: 'url-loader?limit=10000&mimetype=application/font-woff' },
+      { test: /\.(ttf|eot|svg|)$/, loader: 'file-loader' },
+      { test: /\.html$/, loader: 'file?name=[name].[ext]' },
+      { test: /\.(png|jpg|jpeg|gif)$/, loader: 'url-loader?limit=8192' }
     ]
   },
-  postLoaders: [
-    {
-      include: path.resolve(__dirname, 'node_modules/mapbox-gl'),
-      loader: 'transform?brfs'
-    }
-  ],
   externals: {
     fs: '{}',
     tls: '{}',
     net: '{}',
     console: '{}'
   },
+  postLoaders: [
+    {
+      include: /node_modules\/mapbox-gl/,
+      loader: 'transform',
+      query: 'brfs'
+    }
+  ],
   plugins: [
-    //new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false }, comments: false}),
-    //new webpack.optimize.DedupePlugin(),
+    // new webpack.optimize.UglifyJsPlugin({compress: { warnings: false }, comments: false}),
+    // new webpack.optimize.DedupePlugin(),
+    new webpack.DefinePlugin({
+      'process.env': { NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development') }
+    }),
+    new webpack.DefinePlugin({
+      __DEV__: true
+    })
   ]
 }

@@ -1,28 +1,36 @@
-import React from 'react'
+"use strict"
+
+import React, { Component } from 'react'
 import { render } from 'react-dom'
 import { Input, Grid, Row, Col, Button } from 'react-bootstrap'
-import { Map, Logo, Search, getBounds, NorthArrow, TitlView, ZoomIn, ZoomOut, Options, Checkout, BoundingBox } from './components'
-import classNames from 'classnames'
+import { observer } from 'mobx-react'
+import { store } from '../store'
+import {
+  Map,
+  Logo,
+  Search,
+  getBounds,
+  NorthArrow,
+  TitlView,
+  ZoomIn,
+  ZoomOut,
+  Options,
+  Checkout,
+  BoundingBox } from '../components'
 
-class App extends React.Component {
-
+@observer
+export default class App extends Component {
   constructor(props) {
     super(props)
     this.handleSearchClick = this.handleSearchClick.bind(this)
     this.handleOrientation = this.handleOrientation.bind(this)
-    this.handleResize = this.handleResize.bind(this)
     this.state = {
-      maxHeight: window.innerHeight,
       orientation: 1
     }
   }
 
-  componentDidMount() {
-    window.addEventListener('resize', this.handleResize)
-  }
-
-  handleResize() {
-    this.setState({ maxHeight: window.innerHeight })
+  componentWillReact() {
+    console.log("I will re-render, since the height has changed!");
   }
 
   handleOrientation(orientation) {
@@ -46,9 +54,10 @@ class App extends React.Component {
         backgroundColor: 'rgb(10, 20, 35)',
       },
       'left': {
-        height: this.state.maxHeight,
+        height: store.height,
         backgroundColor: 'rgb(170, 165, 142)',
-        padding: 0
+        padding: 0,
+        margin: 0
       },
       'topRight': {
         backgroundColor: 'rgb(10, 20, 35)',
@@ -65,8 +74,8 @@ class App extends React.Component {
       <Grid fluid={true} style={ styles.container }>
         <Row style={styles.row}>
           { /* Map */ }
-          <Col xs={12} sm={6} md={8} style={styles.left}>
-            <Map bounds={ this.state.bounds } height={ this.maxHeight }>
+          <Col xs={12} sm={6} md={8} style={ styles.left }>
+            <Map bounds={ this.state.bounds }>
               <BoundingBox orientation={ this.state.orientation }/>
               <NorthArrow />
               <TitlView />
@@ -90,5 +99,3 @@ class App extends React.Component {
     )
   }
 }
-
-render(<App />, document.getElementById('app'))

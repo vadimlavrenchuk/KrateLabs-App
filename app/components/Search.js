@@ -1,9 +1,12 @@
 import React from 'react'
 import { Input, Button } from 'react-bootstrap'
 import { torontoGeometry } from './utils'
+import { observer } from 'mobx-react'
+import { store } from '../store'
 
+
+@observer
 export default class Search extends React.Component {
-
   static defaultProps = {
     left: '20%',
     right: '20%',

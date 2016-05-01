@@ -1,11 +1,9 @@
-/**
- * Map
- */
-import { isArray, isUndefined, uniqueId } from 'lodash'
 import React from 'react'
+import { render } from 'react-dom'
+import mapboxgl from 'mapbox-gl'
+import { Button } from 'react-bootstrap'
 
-export default class Map extends React.Component {
-
+class App extends React.Component {
   static defaultProps = {
     lat: 43.650128,
     lng: -79.382185,
@@ -14,15 +12,14 @@ export default class Map extends React.Component {
     token: 'pk.eyJ1IjoiYWRkeHkiLCJhIjoiY2lsdmt5NjZwMDFsdXZka3NzaGVrZDZtdCJ9.ZUE-LebQgHaBduVwL68IoQ',
     style: 'mapbox://styles/addxy/cin9l0b8d0023b4noejyuc2r7'
   }
-
   constructor(props) {
     super(props)
-
-    this.state = { active: false }
+    this.state = {height: '300px'}
   }
 
   componentDidMount() {
     // Create MapboxGL Map
+    window.mapboxgl = mapboxgl
     mapboxgl.accessToken = this.props.token
 
     const map = new mapboxgl.Map({
@@ -30,7 +27,8 @@ export default class Map extends React.Component {
       style: this.props.style,
       center: [this.props.lng, this.props.lat],
       zoom: this.props.zoom,
-      attributionControl: false
+      attributionControl: false,
+      repaint: true
     })
     window.map = map
     this.setState({ active: true })
@@ -39,17 +37,24 @@ export default class Map extends React.Component {
   render() {
     const styles = {
       map: {
-        height: '100%',
+        position: 'absolute',
+        top: '0px',
+        bottom: '0px',
         width: '100%',
-        position: 'absolute'
+        backgroundColor: 'grey'
       }
     }
     return (
-      <div
-        id={ this.props.id }
-        style={ styles.map }>
-        { this.state.active && this.props.children }
+      <div>
+        <div
+          id={ this.props.id }
+          style={ styles.map }>
+        </div>
+        <Button onClick={ () => this.setState({height: '500px'}) }>Big</Button>
+        <Button onClick={ () => this.setState({height: '300px'}) }>Small</Button>
       </div>
     )
   }
 }
+
+render(<App />, document.getElementById('app'))
