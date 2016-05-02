@@ -3,7 +3,7 @@ import { Input, Button } from 'react-bootstrap'
 import { torontoGeometry } from './utils'
 import { observer } from 'mobx-react'
 import { store } from '../store'
-
+import 'whatwg-fetch'
 
 @observer
 export default class Search extends React.Component {
