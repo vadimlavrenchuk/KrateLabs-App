@@ -2,7 +2,6 @@ nginx:
   restart: always
   image: nginx:alpine
   volumes:
-    - ./index.html:/usr/share/nginx/html/index.html
-    - ./dist:/usr/share/nginx/html/assets
+    - ./dist:/usr/share/nginx/html
   ports:
     - 80:80
