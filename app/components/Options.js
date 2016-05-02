@@ -10,15 +10,15 @@ export default class Options extends React.Component {
     super(props)
     this.state = {
       orientation: 1,
-      canvas: 2,
+      material: 2,
       size: 2,
       validEmail: false
     }
     this.handleClickOrientation = this.handleClickOrientation.bind(this)
-    this.handleClickCanvas = this.handleClickCanvas.bind(this)
+    this.handleClickMaterial = this.handleClickMaterial.bind(this)
     this.handleClickSize = this.handleClickSize.bind(this)
     this.defaults = {
-      canvas: {
+      material: {
         1: 'Paper',
         2: 'Acrylic',
         3: 'Metal'
@@ -45,10 +45,10 @@ export default class Options extends React.Component {
     else if (this.state.size == 2) { price = price * 1 }
     else if (this.state.size == 3) { price = price * 1.4 }
 
-    // Canvas
-    if (this.state.canvas == 1) { price = price * 0.4 }
-    else if (this.state.canvas == 2) { price = price * 1 }
-    else if (this.state.canvas == 3) { price = price * 2 }
+    // Material
+    if (this.state.material == 1) { price = price * 0.4 }
+    else if (this.state.material == 2) { price = price * 1 }
+    else if (this.state.material == 3) { price = price * 2 }
 
     return price
   }
@@ -62,8 +62,8 @@ export default class Options extends React.Component {
     this.setState({ size: event })
   }
 
-  handleClickCanvas(event) {
-    this.setState({ canvas: event })
+  handleClickMaterial(event) {
+    this.setState({ material: event })
   }
 
   render() {
@@ -119,24 +119,24 @@ export default class Options extends React.Component {
               block>{ this.defaults.size[3][this.state.orientation] }</Button>
           </Col>
 
-          { /* Canvas Type */ }
-          <h3 style={ styles.title }>Canvas Type</h3>
+          { /* Material Type */ }
+          <h3 style={ styles.title }>Material Type</h3>
           <Col xs={4}>
             <Button
-              bsStyle={ this.state.canvas == 1 ? buttonOn : buttonOff }
-              onClick={ () => this.handleClickCanvas(1) }
+              bsStyle={ this.state.material == 1 ? buttonOn : buttonOff }
+              onClick={ () => this.handleClickMaterial(1) }
               block>Paper</Button>
           </Col>
           <Col xs={4}>
             <Button
-              bsStyle={ this.state.canvas == 2 ? buttonOn : buttonOff }
-              onClick={ () => this.handleClickCanvas(2) }
+              bsStyle={ this.state.material == 2 ? buttonOn : buttonOff }
+              onClick={ () => this.handleClickMaterial(2) }
               block>Acrylic</Button>
           </Col>
           <Col xs={4}>
             <Button
-              bsStyle={ this.state.canvas == 3 ? buttonOn : buttonOff }
-              onClick={ () => this.handleClickCanvas(3) }
+              bsStyle={ this.state.material == 3 ? buttonOn : buttonOff }
+              onClick={ () => this.handleClickMaterial(3) }
               block>Metal</Button>
           </Col>
 
