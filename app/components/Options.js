@@ -1,4 +1,5 @@
 import React from 'react'
+import classNames from 'classnames'
 import { Input, Button, ButtonGroup, Grid, Row, Col } from 'react-bootstrap'
 
 export default class Options extends React.Component {
@@ -68,17 +69,14 @@ export default class Options extends React.Component {
   render() {
     const styles = {
       container: {
-        textAlign: 'center',
-        color: 'white'
+        textAlign: 'center'
       },
       title: {
-        paddingTop: '50px'
-      },
-      price: {
-        color: 'rgb(152, 197, 247)',
-        textShadow: '0 0 0.3em #777'
+        paddingTop: '30px'
       }
     }
+    let buttonOn = 'success'
+    let buttonOff = 'info'
 
     return (
       <Grid fluid={true} style={ styles.container }>
@@ -89,15 +87,13 @@ export default class Options extends React.Component {
           <h3>Orientation</h3>
           <Col xs={6}>
             <Button
-              bsSize='large'
-              bsStyle={ this.state.orientation == 1 ? 'primary' : 'default'}
+              bsStyle={ this.state.orientation == 1 ? 'danger' : buttonOff }
               onClick={ () => this.handleClickOrientation(1) }
               block>Landscape</Button>
           </Col>
           <Col xs={6}>
             <Button
-              bsSize='large'
-              bsStyle={ this.state.orientation == 2 ? 'primary' : 'default'}
+              bsStyle={ this.state.orientation == 2 ? 'danger' : buttonOff }
               onClick={ () => this.handleClickOrientation(2) }
               block>Potrait</Button>
           </Col>
@@ -106,22 +102,19 @@ export default class Options extends React.Component {
           <h3 style={ styles.title }>Layout Size</h3>
           <Col xs={4}>
             <Button
-              bsSize='large'
-              bsStyle={ this.state.size == 1 ? 'danger' : 'default'}
+              bsStyle={ this.state.size == 1 ? buttonOn : buttonOff }
               onClick={ () => this.handleClickSize(1) }
               block>{ this.defaults.size[1][this.state.orientation] }</Button>
           </Col>
           <Col xs={4}>
             <Button
-              bsSize='large'
-              bsStyle={ this.state.size == 2 ? 'danger' : 'default'}
+              bsStyle={ this.state.size == 2 ? buttonOn : buttonOff }
               onClick={ () => this.handleClickSize(2) }
               block>{ this.defaults.size[2][this.state.orientation] }</Button>
           </Col>
           <Col xs={4}>
             <Button
-              bsSize='large'
-              bsStyle={ this.state.size == 3 ? 'danger' : 'default'}
+              bsStyle={ this.state.size == 3 ? buttonOn : buttonOff }
               onClick={ () => this.handleClickSize(3) }
               block>{ this.defaults.size[3][this.state.orientation] }</Button>
           </Col>
@@ -130,29 +123,30 @@ export default class Options extends React.Component {
           <h3 style={ styles.title }>Canvas Type</h3>
           <Col xs={4}>
             <Button
-              bsSize='large'
-              bsStyle={ this.state.canvas == 1 ? 'warning' : 'default'}
+              bsStyle={ this.state.canvas == 1 ? buttonOn : buttonOff }
               onClick={ () => this.handleClickCanvas(1) }
               block>Paper</Button>
           </Col>
           <Col xs={4}>
             <Button
-              bsSize='large'
-              bsStyle={ this.state.canvas == 2 ? 'warning' : 'default'}
+              bsStyle={ this.state.canvas == 2 ? buttonOn : buttonOff }
               onClick={ () => this.handleClickCanvas(2) }
               block>Acrylic</Button>
           </Col>
           <Col xs={4}>
             <Button
-              bsSize='large'
-              bsStyle={ this.state.canvas == 3 ? 'warning' : 'default'}
+              bsStyle={ this.state.canvas == 3 ? buttonOn : buttonOff }
               onClick={ () => this.handleClickCanvas(3) }
               block>Metal</Button>
           </Col>
 
           { /* Price */ }
-          <h3 style={ styles.title }>Total Cost</h3>
-          <h1 style={ styles.price }>${ this.getPrice() }</h1>
+        </Row>
+        <Row className={ 'price' }>
+          <Col xs={12}>
+            <h3>Total Cost</h3>
+            <h1>${ this.getPrice() }</h1>
+          </Col>
         </Row>
       </Grid>
     )

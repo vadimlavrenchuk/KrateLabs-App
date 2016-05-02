@@ -1,0 +1,26 @@
+$tiel: #4AC7B0;
+$grey: #494141;
+$salmon: #FB7461;
+$light-grey: #E6E6DD;
+$medium-grey: #B9BDB1;
+$light-blue: #ACC6CB;
+$font-stack: Helvetica, sans-serif;
+
+body {
+  font: 100% $font-stack;
+  color: $light-grey;
+}
+
+.price {
+  color: white;
+  background-color: $tiel;
+  padding: 10px;
+  font-size: 1.2em;
+  margin-top: 30px;
+  font-weight: bold;
+  text-shadow: 0 0 0.5em $grey, 0 0 0.5em $grey;
+}
+
+.background {
+  background-color: $grey;
+}

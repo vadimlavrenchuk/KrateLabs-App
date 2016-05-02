@@ -3,8 +3,8 @@ import React from 'react'
 import { render } from 'react-dom'
 import { Router, Route, hashHistory } from 'react-router'
 import { App } from './components'
-import './assets/bootstrap-3.3.6/css/bootstrap.min.css'
-import './assets/bootstrap-3.3.6/css/bootstrap-theme.min.css'
+import './assets/bootstrap-sass-3.3.6/stylesheets/_bootstrap.scss'
+import './assets/css/base.scss'
 
 var routes = (
   <Route>

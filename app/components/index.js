@@ -1,6 +1,5 @@
 export App from './App'
 export Map from './Map'
-export About from './About'
 export Logo from './Logo'
 export Search from './Search'
 export getBounds from './utils'

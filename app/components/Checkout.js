@@ -36,8 +36,7 @@ export default class Checkout extends React.Component {
   render() {
     const styles = {
       container: {
-        textAlign: 'center',
-        color: 'white'
+        textAlign: 'center'
       },
       title: {
         paddingTop: '50px'
@@ -47,7 +46,7 @@ export default class Checkout extends React.Component {
     return (
       <Grid fluid={ true } style={ styles.container }>
         <Row>
-          <h1>Checkout</h1>
+          <h2>Checkout</h2>
           <Col xs={12}>
             <Input
               bsSize="large"
@@ -63,7 +62,7 @@ export default class Checkout extends React.Component {
               onChange={ this.handleChange }
             />
             <Button
-              bsSize='large'
+              bsStyle={ this.state.isEmail ? 'danger' : 'default' }
               disabled={ !this.state.isEmail }
               onClick={ this.handleClick }>
               Add to Cart

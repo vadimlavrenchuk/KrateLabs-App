@@ -1,3 +1,5 @@
+import mapboxgl from 'mapbox-gl'
+
 export default function getPosition(map, zoomOffset=0) {
   return {
     center: map.getCenter(),

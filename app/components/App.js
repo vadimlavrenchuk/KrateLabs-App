@@ -47,23 +47,20 @@ export default class App extends Component {
   render() {
     const styles = {
       'container': {
-        backgroundColor: 'rgb(10, 20, 35)',
       },
       'left': {
         height: store.height,
-        backgroundColor: 'rgb(170, 165, 142)',
         padding: 0,
         margin: 0
       },
       'right': {
-        backgroundColor: 'rgb(10, 20, 35)',
-        overflow: 'scroll',
+        overflowY: 'auto',
         padding: 0,
         paddingBottom: '50px'
       }
     }
     return (
-      <Grid fluid={true} style={ styles.container }>
+      <Grid fluid={true} className={ 'background' } style={ styles.container }>
         <Row style={styles.row}>
 
           { /* Map */ }
