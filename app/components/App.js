@@ -22,26 +22,6 @@ import {
 export default class App extends Component {
   constructor(props) {
     super(props)
-    this.handleSearchClick = this.handleSearchClick.bind(this)
-    this.handleOrientation = this.handleOrientation.bind(this)
-    this.state = {
-      orientation: 1
-    }
-  }
-
-  handleOrientation(orientation) {
-    this.setState({
-      orientation: orientation
-    })
-  }
-
-  handleSearchClick(geometry) {
-    let bounds = getBounds(geometry)
-    this.setState({
-      geometry: geometry,
-      bounds: bounds
-    })
-    window.map.fitBounds(bounds)
   }
 
   render() {
@@ -65,20 +45,20 @@ export default class App extends Component {
 
           { /* Map */ }
           <Col xs={12} sm={8} md={9} lg={10} style={ styles.left }>
-            <Map bounds={ this.state.bounds }>
-              <BoundingBox orientation={ this.state.orientation }/>
+            <Map>
+              <BoundingBox />
               <NorthArrow />
               <TitlView />
               <ZoomIn />
               <ZoomOut />
             </Map>
-            <Search onClick={ this.handleSearchClick }/>
+            <Search />
             <Logo />
           </Col>
 
           { /* Options */ }
           <Col xs={12} sm={4} md={3} lg={2} style={styles.right}>
-            <Options handleOrientation={ this.handleOrientation } />
+            <Options />
             <Checkout />
           </Col>
         </Row>
