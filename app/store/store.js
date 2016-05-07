@@ -3,13 +3,13 @@ import validator from 'validator'
 
 
 export const store = new class Store {
-  @observable height = window.innerHeight
-  @observable width = window.innerWidth
   @observable orientation = 1
   @observable material = 2
   @observable size = 2
   @observable email = ''
   @observable basePrice = 280
+  @observable height = window.innerHeight
+  @observable width = window.innerWidth
 
   sizeTable = {
     1: {1: '24"x18"', 2: '18"x24"'},

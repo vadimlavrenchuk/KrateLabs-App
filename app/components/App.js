@@ -34,6 +34,7 @@ export default class App extends Component {
       'right': {
         overflowY: 'auto',
         padding: 0,
+        height: store.height,
         paddingBottom: '50px'
       }
     }
@@ -42,7 +43,7 @@ export default class App extends Component {
         <Row style={styles.row}>
 
           { /* Map */ }
-          <Col xs={12} sm={8} md={9} lg={10} style={ styles.left }>
+          <Col xs={12} sm={8} md={8} lg={9} style={ styles.left }>
             <Map>
               <BoundingBox />
               <NorthArrow />
@@ -55,7 +56,7 @@ export default class App extends Component {
           </Col>
 
           { /* Options */ }
-          <Col xs={12} sm={4} md={3} lg={2} style={styles.right}>
+          <Col xs={12} sm={4} md={4} lg={3} style={styles.right}>
             <Options />
             <Checkout />
           </Col>
