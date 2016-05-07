@@ -1,7 +1,5 @@
 import React from 'react'
 import { Input, Button, Grid, Row, Col } from 'react-bootstrap'
-import validator from 'validator'
-
 
 export default class Checkout extends React.Component {
 
@@ -9,10 +7,6 @@ export default class Checkout extends React.Component {
 
   constructor(props) {
     super(props)
-    this.state = {
-      value: '',
-      isEmail: false
-    }
     this.handleKeyDown = this.handleKeyDown.bind(this)
     this.handleChange = this.handleChange.bind(this)
   }
@@ -26,11 +20,7 @@ export default class Checkout extends React.Component {
   }
 
   handleChange(e) {
-    let value = this.refs.input.getValue()
-    this.setState({
-      value: value,
-      isEmail: validator.isEmail(value)
-    })
+    store.email = this.refs.input.getValue()
   }
 
   render() {
@@ -44,32 +34,28 @@ export default class Checkout extends React.Component {
     }
 
     return (
-      <Grid fluid={ true } style={ styles.container }>
-        <Row>
-          <h2>Checkout</h2>
-          <Col xs={12}>
-            <Input
-              bsSize="large"
-              type="text"
-              value={ this.state.value }
-              placeholder="Enter email"
-              hasFeedback
-              ref="input"
-              bsStyle={ this.state.isEmail ? 'success' : 'error' }
-              groupClassName="group-class"
-              labelClassName="label-class"
-              onKeyDown={ this.handleKeyDown }
-              onChange={ this.handleChange }
-            />
-            <Button
-              bsStyle={ this.state.isEmail ? 'danger' : 'default' }
-              disabled={ !this.state.isEmail }
-              onClick={ this.handleClick }>
-              Add to Cart
-            </Button>
-          </Col>
-        </Row>
-      </Grid>
+      <div style={ styles.container }>
+        <h3>Checkout</h3>
+        <Input
+          bsSize="large"
+          type="text"
+          value={ store.email }
+          placeholder="Enter email"
+          hasFeedback
+          ref="input"
+          bsStyle={ store.emailValid ? 'success' : 'error' }
+          groupClassName="group-class"
+          labelClassName="label-class"
+          onKeyDown={ this.handleKeyDown }
+          onChange={ this.handleChange }
+        />
+        <Button
+          bsStyle={ store.emailValid ? 'danger' : 'default' }
+          disabled={ !store.emailValid }
+          onClick={ this.handleClick }>
+          Add to Cart
+        </Button>
+      </div>
     )
   }
 }

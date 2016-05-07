@@ -64,7 +64,7 @@ export default class App extends Component {
         <Row style={styles.row}>
 
           { /* Map */ }
-          <Col xs={12} sm={12} md={8} style={ styles.left }>
+          <Col xs={12} sm={8} md={9} lg={10} style={ styles.left }>
             <Map bounds={ this.state.bounds }>
               <BoundingBox orientation={ this.state.orientation }/>
               <NorthArrow />
@@ -77,7 +77,7 @@ export default class App extends Component {
           </Col>
 
           { /* Options */ }
-          <Col xs={12} sm={12} md={4} style={styles.right}>
+          <Col xs={12} sm={4} md={3} lg={2} style={styles.right}>
             <Options handleOrientation={ this.handleOrientation } />
             <Checkout />
           </Col>
