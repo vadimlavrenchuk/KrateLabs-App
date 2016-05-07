@@ -34,7 +34,7 @@ export const store = new class Store {
   @computed get orientationText() {
     return {
       1: 'Landscape',
-      2: 'Potrait'
+      2: 'Portrait'
     }[this.orientation]
   }
 
