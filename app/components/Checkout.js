@@ -1,14 +1,14 @@
 import React from 'react'
-import { Input, Button, Grid, Row, Col } from 'react-bootstrap'
+import { Input, Button } from 'react-bootstrap'
+import { observer } from 'mobx-react'
+import { store } from '../store'
 
+@observer
 export default class Checkout extends React.Component {
-
-  static defaultProps = { }
 
   constructor(props) {
     super(props)
     this.handleKeyDown = this.handleKeyDown.bind(this)
-    this.handleChange = this.handleChange.bind(this)
   }
 
   handleClick() {
@@ -19,17 +19,11 @@ export default class Checkout extends React.Component {
     if (e.key == 'Enter') this.handleClick()
   }
 
-  handleChange(e) {
-    store.email = this.refs.input.getValue()
-  }
-
   render() {
     const styles = {
       container: {
-        textAlign: 'center'
-      },
-      title: {
-        paddingTop: '50px'
+        textAlign: 'center',
+        padding: '10px'
       }
     }
 
@@ -37,17 +31,16 @@ export default class Checkout extends React.Component {
       <div style={ styles.container }>
         <h3>Checkout</h3>
         <Input
-          bsSize="large"
+          bsSize="medium"
           type="text"
           value={ store.email }
           placeholder="Enter email"
           hasFeedback
-          ref="input"
           bsStyle={ store.emailValid ? 'success' : 'error' }
           groupClassName="group-class"
           labelClassName="label-class"
           onKeyDown={ this.handleKeyDown }
-          onChange={ this.handleChange }
+          onChange={ (e) => store.email = e.target.value }
         />
         <Button
           bsStyle={ store.emailValid ? 'danger' : 'default' }

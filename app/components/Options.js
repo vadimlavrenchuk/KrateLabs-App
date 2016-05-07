@@ -1,7 +1,10 @@
 import React from 'react'
 import classNames from 'classnames'
 import { Button, ButtonGroup } from 'react-bootstrap'
+import { observer } from 'mobx-react'
+import { store } from '../store'
 
+@observer
 export default class Options extends React.Component {
 
   static defaultProps = { }
@@ -45,17 +48,17 @@ export default class Options extends React.Component {
           <Button
             bsStyle={ store.size == 1 ? buttonOn : buttonOff }
             onClick={ () => store.size = 1 }>
-            { this.defaults.size[1][store.orientation] }
+            { store.sizeText(1) }
           </Button>
           <Button
             bsStyle={ store.size == 2 ? buttonOn : buttonOff }
             onClick={ () => store.size = 2 }>
-            { this.defaults.size[2][store.orientation] }
+            { store.sizeText(2) }
           </Button>
           <Button
             bsStyle={ store.size == 3 ? buttonOn : buttonOff }
             onClick={ () => store.size = 3 }>
-            { this.defaults.size[3][store.orientation] }
+            { store.sizeText(3) }
           </Button>
         </ButtonGroup>
 
@@ -69,18 +72,18 @@ export default class Options extends React.Component {
           </Button>
           <Button
             bsStyle={ store.material == 2 ? buttonOn : buttonOff }
-            onClick={ () => store.material = 2) }>
+            onClick={ () => store.material = 2 }>
             Acrylic
           </Button>
           <Button
             bsStyle={ store.material == 3 ? buttonOn : buttonOff }
-            onClick={ () => store.material = 3) }>
+            onClick={ () => store.material = 3 }>
             Metal
           </Button>
         </ButtonGroup>
         { /* Price */ }
         <div className={ 'price' }>
-          <h3>Total: <span>${ this.getPrice() }</span></h3>
+          <h3>Total: <span>${ store.price }</span></h3>
         </div>
       </div>
     )
