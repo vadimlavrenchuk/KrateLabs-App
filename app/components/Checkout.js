@@ -31,7 +31,7 @@ export default class Checkout extends React.Component {
       <div style={ styles.container }>
         <h3>Checkout</h3>
         <Input
-          bsSize="medium"
+          bsSize="large"
           type="text"
           value={ store.email }
           placeholder="Enter email"

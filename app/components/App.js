@@ -60,7 +60,7 @@ export default class App extends Component {
           { /* Map */ }
           <Col xs={12} sm={8} md={8} lg={9} style={ styles.left }>
             <Map>
-              <BoundingBox />
+              { /* <BoundingBox /> */ }
               <NorthArrow />
               <TitlView />
               <ZoomIn />

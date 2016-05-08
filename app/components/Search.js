@@ -62,10 +62,10 @@ export default class Search extends React.Component {
     const styles = {
       container: {
         position: 'absolute',
-        left: '25%',
-        right: '25%',
-        width: '50%',
-        top: 35,
+        left: '20%',
+        right: '20%',
+        width: '60%',
+        top: 25,
         zIndex: 30,
       },
       search: {
@@ -75,7 +75,7 @@ export default class Search extends React.Component {
         borderBottom: 'grey',
         borderBottomStyle: 'dashed',
         borderBottomWidth: 'thin',
-        fontSize: '7em',
+        fontSize: '6em',
         outline: 'none',
         backgroundColor: 'transparent',
         transition: 'none',
