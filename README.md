@@ -15,6 +15,10 @@ $ npm start
 
 Open your favorite browser to `http://localhost:8080`
 
-## Helpful Links
+## Publish
 
-- https://github.com/reactjs/react-router-redux
+Use Nginx to publish on port 80.
+
+```bash
+$ sudo docker run -d --name kratelabs-web -p 80:80 -v $(pwd)/dist:/usr/share/nginx/html nginx:alpine
+```
