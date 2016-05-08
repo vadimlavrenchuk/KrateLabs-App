@@ -5,6 +5,7 @@ import validator from 'validator'
 export const store = new class Store {
   // Search
   @observable search = ''
+  @observable results = ['Toronto, Canada', 'Seoul, Korea', 'Tokyo, Japan']
 
   // App
   @observable orientation = 1

@@ -4,6 +4,7 @@ import { Input, Button } from 'react-bootstrap'
 import { torontoGeometry } from './utils'
 import { observer } from 'mobx-react'
 import { store } from '../store'
+import { Result } from '../components'
 
 @observer
 export default class Search extends React.Component {
@@ -61,6 +62,7 @@ export default class Search extends React.Component {
 
   handleChange(e) {
     store.search = e.target.value
+    store.results = ['Paris, France', 'New York City', 'San Francisco']
     console.log(store.search)
   }
 
@@ -106,6 +108,9 @@ export default class Search extends React.Component {
           onKeyDown={ this.handleKeyDown }
           onChange={ this.handleChange }
         />
+        { store.results.map((result, index) =>
+          <Result key={ index }>{ result }</Result>
+        )}
       </div>
     )
   }
