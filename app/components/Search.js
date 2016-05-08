@@ -1,7 +1,5 @@
 import React from 'react'
-import classNames from 'classnames'
-import { Input, Button } from 'react-bootstrap'
-import { torontoGeometry } from './utils'
+import { Input } from 'react-bootstrap'
 import { observer } from 'mobx-react'
 import { store } from '../store'
 import { Result } from '../components'
@@ -12,22 +10,9 @@ export default class Search extends React.Component {
   constructor(props) {
     super(props)
     this.getLocation = this.getLocation.bind(this)
-    this.handleMouseEnter = this.handleMouseEnter.bind(this)
-    this.handleMouseLeave = this.handleMouseLeave.bind(this)
-    this.handleClick = this.handleClick.bind(this)
+    this.handleKeyEnter = this.handleKeyEnter.bind(this)
     this.handleKeyDown = this.handleKeyDown.bind(this)
     this.handleChange = this.handleChange.bind(this)
-    this.state = {
-      hover: false
-    }
-  }
-
-  handleMouseEnter() {
-    this.setState({ hover: true })
-  }
-
-  handleMouseLeave() {
-    this.setState({ hover: false })
   }
 
   getLocation(location) {
@@ -40,7 +25,7 @@ export default class Search extends React.Component {
       .catch(error => console.log("Error found"))
   }
 
-  handleClick(e) {
+  handleKeyEnter(e) {
     let result = store.results[store.selected]
     if (result) {
       let bounds = getBounds(result.geometry)
@@ -51,7 +36,7 @@ export default class Search extends React.Component {
   }
 
   handleKeyDown(e) {
-    if (e.key == 'Enter') this.handleClick()
+    if (e.key == 'Enter') this.handleKeyEnter()
     if (e.key == 'ArrowDown') store.selected = Math.min(store.results.length, store.selected + 1)
     if (e.key == 'ArrowUp') store.selected = Math.max(0, store.selected - 1)
   }
