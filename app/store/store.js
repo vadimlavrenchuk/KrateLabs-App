@@ -34,6 +34,7 @@ export const store = new class Store {
 
   constructor() {
     window.addEventListener('resize', this.listenerResize.bind(this))
+    window.addEventListener('hashchange', this.listenerHashChange.bind(this))
   }
 
   sizeText = (e) => {
@@ -78,5 +79,9 @@ export const store = new class Store {
     this.width = window.innerWidth
     console.log(`Reset Height:`, this.height)
     console.log(`Reset Width:`, this.width)
+  }
+
+  listenerHashChange(e) {
+    //
   }
 }

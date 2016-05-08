@@ -24,14 +24,17 @@ export default class App extends Component {
   constructor(props) {
     super(props)
 
-    if (props.params.zoom) { store.zoom = props.params.zoom }
-    if (props.params.lat) { store.lat = props.params.lat }
-    if (props.params.lng) { store.lng = props.params.lng }
-    if (props.params.bearing) { store.bearing = props.params.bearing }
-    if (props.params.pitch) { store.pitch = props.params.pitch }
-    if (props.params.orientation) { store.orientation = props.params.orientation }
-    if (props.params.size) { store.size = props.params.size }
-    if (props.params.material) { store.material = props.params.material }
+    // Store all URL Queries into MobX Store
+    Object.keys(props.location.query).map((key) => {
+      console.log('query', key, props.location.query[key])
+      store[key] = props.location.query[key]
+    })
+
+    // Store all URL Params into MobX Store
+    Object.keys(props.params).map((key) => {
+      console.log('param', key, props.params[key])
+      store[key] = props.params[key]
+    })
   }
 
   render() {

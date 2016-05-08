@@ -8,7 +8,15 @@ import { store } from '../store'
 export default class URLHandler extends React.Component {
 
   componentWillReact() {
-    hashHistory.push(`/${ store.zoom }/${ store.lat }/${ store.lng }/${ store.bearing }/${ store.pitch }/${ store.orientation }/${ store.size }/${ store.material }`)
+    hashHistory.push({
+      pathname: `/${ store.zoom }/${ store.lat }/${ store.lng }/${ store.bearing }/${ store.pitch }/app`,
+      query: {
+        search: store.search,
+        orientation: store.orientation,
+        size: store.size,
+        material: store.material
+      }
+    })
   }
 
   render() {
@@ -20,6 +28,7 @@ export default class URLHandler extends React.Component {
     store.orientation
     store.size
     store.material
+    store.search
     return <div></div>
   }
 }

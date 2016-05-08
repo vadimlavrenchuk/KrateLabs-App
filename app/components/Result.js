@@ -16,8 +16,8 @@ export default class Result extends React.Component {
     }
   }
 
-  handleClick() {
-    console.log('Hello')
+  handleClick(e) {
+    console.log(e)
   }
 
   handleMouseEnter() {
@@ -49,7 +49,7 @@ export default class Result extends React.Component {
     return (
       <div
         style={ styles.result}
-        onClick={ this.handleClick }
+        onClick={ () => this.handleClick(this.props.children) }
         onMouseEnter={ this.handleMouseEnter }
         onMouseLeave={ this.handleMouseLeave }
         block>

@@ -8,14 +8,6 @@ import { Result } from '../components'
 
 @observer
 export default class Search extends React.Component {
-  static defaultProps = {
-    left: '20%',
-    right: '20%',
-    top: 35,
-    zIndex: 30,
-    geometry: torontoGeometry
-  }
-
   constructor(props) {
     super(props)
     this.getLocation = this.getLocation.bind(this)
@@ -70,11 +62,11 @@ export default class Search extends React.Component {
     const styles = {
       container: {
         position: 'absolute',
-        bottom: this.props.bottom,
-        top: this.props.top,
-        left: this.props.left,
-        right: this.props.right,
-        zIndex: this.props.zIndex,
+        left: '25%',
+        right: '25%',
+        width: '50%',
+        top: 35,
+        zIndex: 30,
       },
       search: {
         fontFamily: 'fledgling',
@@ -88,25 +80,27 @@ export default class Search extends React.Component {
         backgroundColor: 'transparent',
         transition: 'none',
         fontWeight: 'bold',
+        width: '100%',
         WebKitTransition: 'none',
         textShadow: '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black'
       }
     }
 
     return (
-      <div style={ styles.container }>
+      <div style={ styles.container } block>
         <input
           bsSize="large"
           type="text"
           bsStyle="link"
           ref="search"
           style={ styles.search }
-          value={ store.value }
+          value={ store.search }
           className={ 'search' }
           bsStyle='default'
           placeholder="Choose a city..."
           onKeyDown={ this.handleKeyDown }
           onChange={ this.handleChange }
+          block
         />
         { store.results.map((result, index) =>
           <Result key={ index }>{ result }</Result>

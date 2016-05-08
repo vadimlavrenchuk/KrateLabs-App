@@ -9,8 +9,7 @@ import './assets/css/base.scss'
 
 var routes = (
   <Route>
-    <Route name='map view' path="/:zoom/:lat/:lng/:bearing/:pitch" view='map' component={ App } />
-    <Route name='options view' path="/:zoom/:lat/:lng/:bearing/:pitch/:orientation/:size/:material" view='options' component={ App } />
+    <Route name='map view' path="/:zoom/:lat/:lng/:bearing/:pitch/app" view='map' component={ App } />
     <Route name='fallback view' path="*" view='fallback' component={ App } />
   </Route>
 )
