@@ -5,6 +5,7 @@ import { torontoGeometry } from './utils'
 import { observer } from 'mobx-react'
 import { store } from '../store'
 import { Result } from '../components'
+import { getBounds, getCenter } from './utils'
 
 @observer
 export default class Search extends React.Component {
@@ -30,32 +31,36 @@ export default class Search extends React.Component {
   }
 
   getLocation(location) {
-    let url = `https://maps.googleapis.com/maps/api/geocode/json?address=${ location }`
+    let bounds = map.getBounds()
+    let url = `https://maps.googleapis.com/maps/api/geocode/json?address=${ location }&bounds=${ bounds._ne.lat },${ bounds._ne.lng }|${ bounds._sw.lat },${ bounds._sw.lng }`
     fetch(url).then(response => response.json())
       .then(data => {
-        let result = data.results[0]
-        console.log(result)
-        this.setState({
-          'results': result,
-          'formatted_address': result.formatted_address,
-          'geometry': result.geometry
-        })
+        store.results = data.results.slice(0, 3)
       })
       .catch(error => console.log("Error found"))
   }
 
-  handleClick() {
-    console.log('hey')
+  handleClick(e) {
+    let result = store.results[store.selected]
+    if (result) {
+      let bounds = getBounds(result.geometry)
+      let center = getCenter(result.geometry)
+      if (bounds) map.fitBounds(bounds)
+      else if (center) map.flyTo({center: center, zoom: 13})
+    }
   }
 
   handleKeyDown(e) {
     if (e.key == 'Enter') this.handleClick()
+    if (e.key == 'ArrowDown') store.selected = Math.min(store.results.length, store.selected + 1)
+    if (e.key == 'ArrowUp') store.selected = Math.max(0, store.selected - 1)
   }
 
   handleChange(e) {
+    store.selected = 0
     store.search = e.target.value
-    store.results = ['Paris, France', 'New York City', 'San Francisco']
-    console.log(store.search)
+    if (store.search) this.getLocation(store.search)
+    else store.results = []
   }
 
   render() {
@@ -103,7 +108,7 @@ export default class Search extends React.Component {
           block
         />
         { store.results.map((result, index) =>
-          <Result key={ index }>{ result }</Result>
+          <Result key={ result.place_id } index={ index } json={ result } />
         )}
       </div>
     )

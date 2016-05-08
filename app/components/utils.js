@@ -9,13 +9,21 @@ export default function getPosition(map, zoomOffset=0) {
   }
 }
 
-export default function getBounds(geometry) {
-  let northeast = geometry.bounds.northeast
-  let southwest = geometry.bounds.southwest
-  let ne = new mapboxgl.LngLat(northeast.lng, northeast.lat)
-  let sw = new mapboxgl.LngLat(southwest.lng, southwest.lat)
+export function getBounds(geometry) {
+  if (geometry.bounds) {
+    let northeast = geometry.bounds.northeast
+    let southwest = geometry.bounds.southwest
+    let ne = new mapboxgl.LngLat(northeast.lng, northeast.lat)
+    let sw = new mapboxgl.LngLat(southwest.lng, southwest.lat)
 
-  return new mapboxgl.LngLatBounds(sw, ne)
+    return new mapboxgl.LngLatBounds(sw, ne)
+  }
+}
+
+export function getCenter(geometry) {
+  if (geometry.location) {
+    return [geometry.location.lng, geometry.location.lat]
+  }
 }
 
 export const torontoGeometry = {

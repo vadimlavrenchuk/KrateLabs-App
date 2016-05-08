@@ -26,13 +26,11 @@ export default class App extends Component {
 
     // Store all URL Queries into MobX Store
     Object.keys(props.location.query).map((key) => {
-      console.log('query', key, props.location.query[key])
       store[key] = props.location.query[key]
     })
 
     // Store all URL Params into MobX Store
     Object.keys(props.params).map((key) => {
-      console.log('param', key, props.params[key])
       store[key] = props.params[key]
     })
   }
@@ -65,10 +63,10 @@ export default class App extends Component {
               <TitlView />
               <ZoomIn />
               <ZoomOut />
-              <URLHandler />
             </Map>
             <Search />
             <Logo />
+            <URLHandler />
           </Col>
 
           { /* Options */ }
