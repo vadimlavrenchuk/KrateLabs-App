@@ -3,6 +3,7 @@ import validator from 'validator'
 
 
 export const store = new class Store {
+  // App
   @observable orientation = 1
   @observable material = 2
   @observable size = 2
@@ -10,6 +11,16 @@ export const store = new class Store {
   @observable basePrice = 280
   @observable height = window.innerHeight
   @observable width = window.innerWidth
+
+  // Map
+  @observable zoom = 12
+  @observable lat = 43.650128
+  @observable lng = -79.382185
+  @observable bearing = 0.0
+  @observable pitch = 0.0
+  @observable mapId = 'map'
+  @observable token = 'pk.eyJ1IjoiYWRkeHkiLCJhIjoiY2lsdmt5NjZwMDFsdXZka3NzaGVrZDZtdCJ9.ZUE-LebQgHaBduVwL68IoQ'
+  @observable style = 'mapbox://styles/addxy/cin9l0b8d0023b4noejyuc2r7'
 
   sizeTable = {
     1: {1: '24"x18"', 2: '18"x24"'},

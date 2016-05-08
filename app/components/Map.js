@@ -5,36 +5,42 @@ import { isArray, isUndefined, uniqueId } from 'lodash'
 import mapboxgl from 'mapbox-gl'
 import React from 'react'
 import { observer } from 'mobx-react'
+import { store } from '../store'
 
 @observer
 export default class Map extends React.Component {
-  static defaultProps = {
-    lat: 43.650128,
-    lng: -79.382185,
-    zoom: 12,
-    id: 'map',
-    token: 'pk.eyJ1IjoiYWRkeHkiLCJhIjoiY2lsdmt5NjZwMDFsdXZka3NzaGVrZDZtdCJ9.ZUE-LebQgHaBduVwL68IoQ',
-    style: 'mapbox://styles/addxy/cin9l0b8d0023b4noejyuc2r7'
-  }
 
   constructor(props) {
     super(props)
     this.state = { active: false }
+    this.handleMove = this.handleMove.bind(this)
   }
 
   componentDidMount() {
     // Create MapboxGL Map
-    mapboxgl.accessToken = this.props.token
+    mapboxgl.accessToken = store.token
 
     const map = new mapboxgl.Map({
-      container: this.map,
-      style: this.props.style,
-      center: [this.props.lng, this.props.lat],
-      zoom: this.props.zoom,
+      container: store.mapId,
+      style: store.style,
+      center: [store.lng, store.lat],
+      bearing: store.bearing,
+      pitch: store.pitch,
+      zoom: store.zoom,
       attributionControl: false
     })
     window.map = map
     this.setState({ active: true })
+    map.on('move', this.handleMove)
+  }
+
+  handleMove(e) {
+    store.zoom = map.getZoom().toPrecision(3)
+    store.center = map.getCenter()
+    store.lat = store.center.lat.toPrecision(4)
+    store.lng = store.center.lng.toPrecision(5)
+    store.pitch = Math.floor(map.getPitch())
+    store.bearing = Math.floor(map.getBearing())
   }
 
   render() {
@@ -49,7 +55,7 @@ export default class Map extends React.Component {
     }
     return (
       <div
-        ref={ (ref) => this.map = ref }
+        id={ store.mapId }
         style={ styles.map }>
         { this.state.active && this.props.children }
       </div>

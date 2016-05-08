@@ -3,9 +3,11 @@
  */
 import React from 'react'
 import { Glyphicon } from 'react-bootstrap'
+import { observer } from 'mobx-react'
+import { store } from '../store'
 
+@observer
 export default class NorthArrow extends React.Component {
-
   static defaultProps = {
     zIndex: 15,
     bottom: 150,
@@ -18,7 +20,6 @@ export default class NorthArrow extends React.Component {
     super(props)
 
     this.state = {
-      bearing: 0,
       hover: false,
       active: false
     }
@@ -43,7 +44,7 @@ export default class NorthArrow extends React.Component {
       180: 270,
       270: 0
     }
-    map.flyTo({ bearing: bearingSwitch[this.state.bearing] || 0 })
+    map.flyTo({ bearing: bearingSwitch[store.bearing] || 0 })
   }
 
   handleMouseEnter() {
@@ -71,8 +72,8 @@ export default class NorthArrow extends React.Component {
         position : 'absolute',
         width: this.props.width,
         height: this.props.height,
-        transform: `rotate(${ this.state.bearing }deg)`,
-        WebkitFilter: (!this.state.bearing) ? `grayscale(1)` : ``,
+        transform: `rotate(${ store.bearing }deg)`,
+        WebkitFilter: (!store.bearing) ? `grayscale(1)` : ``,
         backgroundImage: 'url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJ5ZXMiPz4KCjxzdmcgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwLjAgMC4wIDUzMy4zMzMzMzMzMzMzMzM0IDUzMy4zMzMzMzMzMzMzMzM0IiBmaWxsPSJub25lIiBzdHJva2U9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJzcXVhcmUiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+PGNsaXBQYXRoIGlkPSJwLjAiPjxwYXRoIGQ9Im0wIDBsNTMzLjMzMzMgMGwwIDUzMy4zMzMzbC01MzMuMzMzMyAwbDAgLTUzMy4zMzMzeiIgY2xpcC1ydWxlPSJub256ZXJvIj48L3BhdGg+PC9jbGlwUGF0aD48ZyBjbGlwLXBhdGg9InVybCgjcC4wKSI+PHBhdGggZmlsbD0iIzAwMDAwMCIgZmlsbC1vcGFjaXR5PSIwLjAiIGQ9Im0wIDBsNTMzLjMzMzMgMGwwIDUzMy4zMzMzbC01MzMuMzMzMyAweiIgZmlsbC1ydWxlPSJub256ZXJvIj48L3BhdGg+PHBhdGggZmlsbD0iI2ZmMDAwMCIgZD0ibTIwNy40OTQ0NiAyNzUuMzYzOGw1My4xODExMDcgLTE2NS41NDMzbDUzLjE4MTA5IDE2NS41NDMzeiIgZmlsbC1ydWxlPSJub256ZXJvIj48L3BhdGg+PHBhdGggZmlsbD0iI2ZmZmZmZiIgZD0ibTIwNy40OTQ0NiAyNzUuMzY0NDRsNTMuMTgxMTA3IDE2NS41NDMzM2w1My4xODEwOSAtMTY1LjU0MzMzeiIgZmlsbC1ydWxlPSJub256ZXJvIj48L3BhdGg+PC9nPjwvc3ZnPgoK)'
       },
       background : {

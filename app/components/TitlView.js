@@ -3,7 +3,10 @@
  */
 import React from 'react'
 import { Glyphicon } from 'react-bootstrap'
+import { observer } from 'mobx-react'
+import { store } from '../store'
 
+@observer
 export default class TiltView extends React.Component {
   static defaultProps = {
     zIndex: 15,
@@ -18,7 +21,6 @@ export default class TiltView extends React.Component {
     super(props)
 
     this.state = {
-      pitch: 0,
       hover: false,
       active: false
     }
@@ -41,7 +43,6 @@ export default class TiltView extends React.Component {
     let pitch = pitchSwitch[pitchCurrent] || 0
 
     map.flyTo({ pitch: pitch })
-    this.setState({ pitch: pitch })
   }
 
   handleMouseEnter() {
@@ -71,9 +72,9 @@ export default class TiltView extends React.Component {
       },
       glyph: {
         position: 'relative',
-        transition: 'all 0.5s',
+        transition: 'all 0.3s',
         top: this.props.height / 2 - (this.props.fontSize / 2),
-        WebkitTransform: `rotateX(${ this.state.pitch / 1.3 }deg)`,
+        WebkitTransform: `rotateX(${ store.pitch / 1.0 }deg)`,
         fontSize: this.props.fontSize,
         textShadow: (this.state.hover) ? `0 0 7px white` : ``,
         color: (this.state.hover) ? `rgb(255, 255, 255)` : `rgb(190, 190, 190)`
