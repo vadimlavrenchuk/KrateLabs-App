@@ -6,6 +6,12 @@ $medium-grey: #B9BDB1;
 $light-blue: #ACC6CB;
 $font-stack: Helvetica, sans-serif;
 
+@font-face {
+  font-family: fledgling;
+  src: url(./fonts/fledgling-sb.ttf);
+  font-weight: bold;
+}
+
 body {
   font: 100% $font-stack;
   color: $light-grey;
@@ -21,6 +27,16 @@ body {
   text-shadow: 0 0 0.5em $grey, 0 0 0.5em $grey;
 }
 
+.search {
+}
+
+
+input:focus { color: yellow }
+
 .background {
   background-color: $grey;
+}
+
+:focus {
+  outline: 0;
 }

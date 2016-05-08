@@ -3,6 +3,9 @@ import validator from 'validator'
 
 
 export const store = new class Store {
+  // Search
+  @observable search = ''
+
   // App
   @observable orientation = 1
   @observable material = 2

@@ -1,3 +1,5 @@
+import 'isomorphic-fetch'
+import {Promise} from 'es6-promise'
 import React, { Component } from 'react'
 import { render } from 'react-dom'
 import { Input, Grid, Row, Col, Button } from 'react-bootstrap'

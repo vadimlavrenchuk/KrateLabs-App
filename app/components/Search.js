@@ -1,32 +1,30 @@
 import React from 'react'
+import classNames from 'classnames'
 import { Input, Button } from 'react-bootstrap'
 import { torontoGeometry } from './utils'
 import { observer } from 'mobx-react'
 import { store } from '../store'
-import 'whatwg-fetch'
 
 @observer
 export default class Search extends React.Component {
   static defaultProps = {
     left: '20%',
     right: '20%',
-    top: 50,
+    top: 35,
     zIndex: 30,
     geometry: torontoGeometry
   }
 
   constructor(props) {
     super(props)
-    this.handleChange = this.handleChange.bind(this)
     this.getLocation = this.getLocation.bind(this)
     this.handleMouseEnter = this.handleMouseEnter.bind(this)
     this.handleMouseLeave = this.handleMouseLeave.bind(this)
     this.handleClick = this.handleClick.bind(this)
     this.handleKeyDown = this.handleKeyDown.bind(this)
+    this.handleChange = this.handleChange.bind(this)
     this.state = {
-      value: '',
-      formatted_address: 'Toronto, ON',
-      geometry: this.props.geometry
+      hover: false
     }
   }
 
@@ -54,57 +52,60 @@ export default class Search extends React.Component {
   }
 
   handleClick() {
-    this.props.onClick(this.state.geometry)
+    console.log('hey')
   }
 
   handleKeyDown(e) {
     if (e.key == 'Enter') this.handleClick()
   }
 
-  handleChange() {
-    let value = this.refs.input.getValue()
-    if (value.length > 2) this.getLocation(value)
-    this.setState({value: value})
+  handleChange(e) {
+    store.search = e.target.value
+    console.log(store.search)
   }
 
   render() {
     const styles = {
-      text: {
-        fontSize: '1.5em'
-      },
-      textBox: {
-        textAlign: 'center',
-        padding: 0
-      },
-      input: {
+      container: {
         position: 'absolute',
         bottom: this.props.bottom,
         top: this.props.top,
         left: this.props.left,
         right: this.props.right,
-        zIndex: this.props.zIndex
+        zIndex: this.props.zIndex,
+      },
+      search: {
+        fontFamily: 'fledgling',
+        border: 'none',
+        color: 'white',
+        borderBottom: 'grey',
+        borderBottomStyle: 'dashed',
+        borderBottomWidth: 'thin',
+        fontSize: '7em',
+        outline: 'none',
+        backgroundColor: 'transparent',
+        transition: 'none',
+        fontWeight: 'bold',
+        WebKitTransition: 'none',
+        textShadow: '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black'
       }
     }
 
     return (
-      <div style={ styles.input }>
-        <Input
+      <div style={ styles.container }>
+        <input
           bsSize="large"
           type="text"
-          value={ this.state.value }
+          bsStyle="link"
+          ref="search"
+          style={ styles.search }
+          value={ store.value }
+          className={ 'search' }
+          bsStyle='default'
           placeholder="Choose a city..."
-          hasFeedback
-          ref="input"
-          groupClassName="group-class"
-          labelClassName="label-class"
           onKeyDown={ this.handleKeyDown }
           onChange={ this.handleChange }
         />
-        <div style={ styles.textBox }>
-          <Button style={ styles.text } onClick={ this.handleClick }>
-            { this.state.formatted_address }
-          </Button>
-        </div>
       </div>
     )
   }
