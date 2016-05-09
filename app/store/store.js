@@ -33,6 +33,13 @@ export const store = new class Store {
     3: {1: '42"x36"', 2: '36"x42"'}
   }
 
+  tiel = '#4AC7B0'
+  grey = '#494141'
+  salmon = '#FB7461'
+  lightGrey = '#E6E6DD'
+  mediumGrey = '#B9BDB1'
+  lightBlue = '#ACC6CB'
+
   constructor() {
     window.addEventListener('resize', this.listenerResize.bind(this))
     window.addEventListener('hashchange', this.listenerHashChange.bind(this))

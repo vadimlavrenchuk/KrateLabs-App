@@ -17,6 +17,14 @@ export default class Options extends React.Component {
     let styles = {
       container: {
         textAlign: 'center'
+      },
+      price: {
+        color: 'white',
+        backgroundColor: store.tiel,
+        padding: '15px',
+        fontSize: '2em',
+        marginTop: '25px',
+        textShadow: `0 0 0.5em ${ store.grey }, 0 0 0.5em ${ store.grey }`,
       }
     }
     let buttonOn = 'success'
@@ -82,8 +90,8 @@ export default class Options extends React.Component {
           </Button>
         </ButtonGroup>
         { /* Price */ }
-        <div className={ 'price' }>
-          <h3>Total: <span>${ store.price }</span></h3>
+        <div style={ styles.price }>
+          <small>Total:</small> ${ store.price }
         </div>
       </div>
     )
