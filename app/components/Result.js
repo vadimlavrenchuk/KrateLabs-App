@@ -47,7 +47,7 @@ export default class Result extends React.Component {
         cursor: `pointer`,
         color: (this.state.hover) ? '#FB7461' : 'white',
         textAlign: 'left',
-        fontSize: '4em',
+        fontSize: '3em',
         outline: 'none',
         backgroundColor: 'transparent',
         transition: 'none',

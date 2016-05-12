@@ -28,9 +28,9 @@ export const store = new class Store {
   @observable style = 'mapbox://styles/addxy/cin9l0b8d0023b4noejyuc2r7'
 
   sizeTable = {
-    1: {1: '24"x18"', 2: '18"x24"'},
-    2: {1: '36"x24"', 2: '24"x36"'},
-    3: {1: '42"x36"', 2: '36"x42"'}
+    1: {1: '24" x 18"', 2: '18" x 24"'},
+    2: {1: '36" x 24"', 2: '24" x 36"'},
+    3: {1: '42" x 36"', 2: '36" x 42"'}
   }
 
   tiel = '#4AC7B0'

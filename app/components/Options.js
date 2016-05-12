@@ -33,10 +33,10 @@ export default class Options extends React.Component {
 
     return (
       <div style={ styles.container }>
-        <h1>Options</h1>
+        <h2>Options</h2>
 
         { /* Page Orientation */ }
-        <h3>Orientation</h3>
+        <h4>Orientation</h4>
         <ButtonGroup bsSize={ buttonSize }>
           <Button
             bsStyle={ store.orientation == 1 ? 'danger' : buttonOff }
@@ -51,7 +51,7 @@ export default class Options extends React.Component {
         </ButtonGroup>
 
         { /* Layout Size */ }
-        <h3>Layout Size</h3>
+        <h4>Layout Size</h4>
         <ButtonGroup bsSize={ buttonSize }>
           <Button
             bsStyle={ store.size == 1 ? buttonOn : buttonOff }
@@ -71,7 +71,7 @@ export default class Options extends React.Component {
         </ButtonGroup>
 
         { /* Material Type */ }
-        <h3>Material Type</h3>
+        <h4>Material Type</h4>
         <ButtonGroup bsSize={ buttonSize }>
           <Button
             bsStyle={ store.material == 1 ? buttonOn : buttonOff }
