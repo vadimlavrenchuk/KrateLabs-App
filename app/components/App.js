@@ -18,6 +18,7 @@ import {
   Checkout,
   Basemap,
   BoundingBox,
+  PanDown,
   Price,
   URLHandler } from '../components'
 
@@ -72,6 +73,7 @@ export default class App extends Component {
               <Basemap />
               <Search />
             </Map>
+            <PanDown />
             <Logo />
           </Col>
 

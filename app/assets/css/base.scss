@@ -4,16 +4,19 @@ $salmon: #FB7461;
 $light-grey: #E6E6DD;
 $medium-grey: #B9BDB1;
 $light-blue: #ACC6CB;
-$font-stack: Helvetica, sans-serif;
 
 @font-face {
   font-family: fledgling;
   src: url(./fonts/fledgling-sb.ttf);
-  font-weight: bold;
+}
+
+@font-face {
+  font-family: AlteHaasGrotesk;
+  src: url(./fonts/AlteHaasGroteskRegular.ttf);
 }
 
 body {
-  font: 100% $font-stack;
+  font: 100% AlteHaasGrotesk;
   color: $light-grey;
 }
 
