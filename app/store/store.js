@@ -63,6 +63,10 @@ export const store = new class Store {
     window.addEventListener('resize', this.listenerResize.bind(this))
   }
 
+  @computed get styleMax() {
+    return Object.keys(this.styleTable).length
+  }
+
   @computed get isXs() {
     return this.width < 768
   }

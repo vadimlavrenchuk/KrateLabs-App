@@ -22,7 +22,7 @@ export default class Basemap extends React.Component {
   }
 
   handleClick() {
-    if (store.style < 3) store.style ++
+    if (store.style < store.styleMax) store.style ++
     else store.style = 1
     map.setStyle(store.styleTable[store.style])
   }
