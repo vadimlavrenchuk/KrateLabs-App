@@ -23,7 +23,7 @@ export default class Checkout extends React.Component {
     const styles = {
       container: {
         textAlign: 'center',
-        padding: '10px'
+        padding: '20px'
       }
     }
 
