@@ -22,7 +22,7 @@ export default class Map extends React.Component {
 
     const map = new mapboxgl.Map({
       container: store.mapId,
-      style: store.style,
+      style: store.styleTable[store.style],
       center: [store.lng, store.lat],
       bearing: store.bearing,
       pitch: store.pitch,

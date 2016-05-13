@@ -10,7 +10,7 @@ import { store } from '../store'
 export default class NorthArrow extends React.Component {
   static defaultProps = {
     zIndex: 15,
-    bottom: 150,
+    bottom: 175,
     right: 10,
     width: 60,
     height: 60
@@ -18,14 +18,10 @@ export default class NorthArrow extends React.Component {
 
   constructor(props) {
     super(props)
-
-    this.state = {
-      hover: false,
-      active: false
-    }
     this.handleClick = this.handleClick.bind(this)
-    this.handleMouseEnter = this.handleMouseEnter.bind(this)
-    this.handleMouseLeave = this.handleMouseLeave.bind(this)
+    this.state = {
+      hover: false
+    }
   }
 
   componentDidMount() {
@@ -47,14 +43,6 @@ export default class NorthArrow extends React.Component {
     map.flyTo({ bearing: bearingSwitch[store.bearing] || 0 })
   }
 
-  handleMouseEnter() {
-    this.setState({ hover: true })
-  }
-
-  handleMouseLeave() {
-    this.setState({ hover: false })
-  }
-
   render() {
     const styles = {
       container : {
@@ -66,7 +54,8 @@ export default class NorthArrow extends React.Component {
         left: this.props.left,
         zIndex: this.props.zIndex,
         width: this.props.width,
-        height: this.props.height
+        height: this.props.height,
+        overflow: 'none'
       },
       northArrow : {
         position : 'absolute',
@@ -89,8 +78,8 @@ export default class NorthArrow extends React.Component {
       <div
         style={ styles.container }
         onClick={ this.handleClick }
-        onMouseEnter={ this.handleMouseEnter }
-        onMouseLeave={ this.handleMouseLeave }
+        onMouseEnter={ () => this.setState({ hover: true }) }
+        onMouseLeave={ () => this.setState({ hover: false }) }
         >
         <div style={ styles.background }></div>
         <div style={ styles.northArrow }></div>

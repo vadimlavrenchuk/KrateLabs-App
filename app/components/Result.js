@@ -14,12 +14,12 @@ export default class Result extends React.Component {
     this.handleMouseLeave = this.handleMouseLeave.bind(this)
     this.handleClick = this.handleClick.bind(this)
     this.state = {
-      hover: (store.selected == this.props.index)
+      hover: (store.selection == this.props.index)
     }
   }
 
   componentWillReact() {
-    if (store.selected == this.props.index) this.setState({ hover: true })
+    if (store.selection == this.props.index) this.setState({ hover: true })
     else this.setState({ hover: false })
   }
 
@@ -28,10 +28,11 @@ export default class Result extends React.Component {
     let center = getCenter(this.props.json.geometry)
     if (bounds) map.fitBounds(bounds)
     else if (center) map.flyTo({center: center, zoom: 13})
+    store.results = []
   }
 
   handleMouseEnter() {
-    store.selected = -1
+    store.selection = -1
     this.setState({ hover: true })
   }
 
@@ -56,7 +57,7 @@ export default class Result extends React.Component {
         textShadow: '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black'
       }
     }
-    store.selected
+    store.selection
     return (
       <div
         style={ styles.result}

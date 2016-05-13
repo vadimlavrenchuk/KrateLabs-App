@@ -17,14 +17,6 @@ export default class Options extends React.Component {
     let styles = {
       container: {
         textAlign: 'center'
-      },
-      price: {
-        color: 'white',
-        backgroundColor: store.tiel,
-        padding: '15px',
-        fontSize: '2em',
-        marginTop: '25px',
-        textShadow: `0 0 0.5em ${ store.grey }, 0 0 0.5em ${ store.grey }`,
       }
     }
     let buttonOn = 'success'
@@ -56,17 +48,17 @@ export default class Options extends React.Component {
           <Button
             bsStyle={ store.size == 1 ? buttonOn : buttonOff }
             onClick={ () => store.size = 1 }>
-            { store.sizeText(1) }
+            { store.sizeTable[1][store.orientation] }
           </Button>
           <Button
             bsStyle={ store.size == 2 ? buttonOn : buttonOff }
             onClick={ () => store.size = 2 }>
-            { store.sizeText(2) }
+            { store.sizeTable[2][store.orientation] }
           </Button>
           <Button
             bsStyle={ store.size == 3 ? buttonOn : buttonOff }
             onClick={ () => store.size = 3 }>
-            { store.sizeText(3) }
+            { store.sizeTable[3][store.orientation] }
           </Button>
         </ButtonGroup>
 
@@ -76,23 +68,19 @@ export default class Options extends React.Component {
           <Button
             bsStyle={ store.material == 1 ? buttonOn : buttonOff }
             onClick={ () => store.material = 1 }>
-            Paper
+            { store.materialTable[1] }
           </Button>
           <Button
             bsStyle={ store.material == 2 ? buttonOn : buttonOff }
             onClick={ () => store.material = 2 }>
-            Acrylic
+            { store.materialTable[2] }
           </Button>
           <Button
             bsStyle={ store.material == 3 ? buttonOn : buttonOff }
             onClick={ () => store.material = 3 }>
-            Metal
+            { store.materialTable[3] }
           </Button>
         </ButtonGroup>
-        { /* Price */ }
-        <div style={ styles.price }>
-          <small>Total:</small> ${ store.price }
-        </div>
       </div>
     )
   }

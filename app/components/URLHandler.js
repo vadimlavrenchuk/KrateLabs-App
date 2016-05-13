@@ -14,7 +14,8 @@ export default class URLHandler extends React.Component {
         search: store.search,
         orientation: store.orientation,
         size: store.size,
-        material: store.material
+        material: store.material,
+        style: store.style
       }
     })
   }
@@ -28,6 +29,7 @@ export default class URLHandler extends React.Component {
     store.orientation
     store.size
     store.material
+    store.style
     store.search
     return <div></div>
   }

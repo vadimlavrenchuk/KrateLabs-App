@@ -1,8 +1,8 @@
 import React from 'react'
-import { Input } from 'react-bootstrap'
+import { Glyphicon, Input } from 'react-bootstrap'
 import { observer } from 'mobx-react'
 import { store } from '../store'
-import { Result } from '../components'
+import { Result, SearchRemove, Remove } from '../components'
 import { getBounds, getCenter } from './utils'
 
 @observer
@@ -20,29 +20,30 @@ export default class Search extends React.Component {
     let url = `https://maps.googleapis.com/maps/api/geocode/json?address=${ location }&bounds=${ bounds._ne.lat },${ bounds._ne.lng }|${ bounds._sw.lat },${ bounds._sw.lng }`
     fetch(url).then(response => response.json())
       .then(data => {
-        store.results = data.results.slice(0, 3)
+        if (location == store.search) store.results = data.results.slice(0, 3)
       })
       .catch(error => console.log("Error found"))
   }
 
   handleKeyEnter(e) {
-    let result = store.results[store.selected]
+    let result = store.results[store.selection]
     if (result) {
       let bounds = getBounds(result.geometry)
       let center = getCenter(result.geometry)
       if (bounds) map.fitBounds(bounds)
       else if (center) map.flyTo({center: center, zoom: 13})
+      store.results = []
     }
   }
 
   handleKeyDown(e) {
     if (e.key == 'Enter') this.handleKeyEnter()
-    if (e.key == 'ArrowDown') store.selected = Math.min(store.results.length, store.selected + 1)
-    if (e.key == 'ArrowUp') store.selected = Math.max(0, store.selected - 1)
+    if (e.key == 'ArrowDown') store.selection = Math.min(store.results.length, store.selection + 1)
+    if (e.key == 'ArrowUp') store.selection = Math.max(0, store.selection - 1)
   }
 
   handleChange(e) {
-    store.selected = 0
+    store.selection = 0
     store.search = e.target.value
     if (store.search) this.getLocation(store.search)
     else store.results = []
@@ -57,6 +58,15 @@ export default class Search extends React.Component {
         width: '60%',
         top: 25,
         zIndex: 30,
+      },
+      remove: {
+        position: 'absolute',
+        right: 10,
+        color: 'white',
+        fontSize: '2.5em',
+        top: 30,
+        cursor: `pointer`,
+        textShadow: '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black'
       },
       search: {
         fontFamily: 'fledgling',
@@ -78,6 +88,7 @@ export default class Search extends React.Component {
 
     return (
       <div style={ styles.container } block>
+        <SearchRemove />
         <input
           bsSize="large"
           type="text"

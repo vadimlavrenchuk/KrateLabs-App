@@ -16,7 +16,9 @@ import {
   ZoomOut,
   Options,
   Checkout,
+  Basemap,
   BoundingBox,
+  Price,
   URLHandler } from '../components'
 
 @observer
@@ -38,11 +40,13 @@ export default class App extends Component {
   render() {
     const styles = {
       'container': {
+        backgroundColor: store.grey
       },
       'left': {
         height: store.height,
         padding: 0,
-        margin: 0
+        margin: 0,
+        overflow: 'hidden'
       },
       'right': {
         overflowY: 'auto',
@@ -52,26 +56,29 @@ export default class App extends Component {
       }
     }
     return (
-      <Grid fluid={true} className={ 'background' } style={ styles.container }>
-        <Row style={styles.row}>
+      <Grid fluid={ true } style={ styles.container }>
+        <Row style={ styles.row }>
+
+          { /* App */ }
+          <URLHandler />
 
           { /* Map */ }
           <Col xs={12} sm={8} md={8} lg={9} style={ styles.left }>
             <Map>
-              { /* <BoundingBox /> */ }
               <NorthArrow />
               <TitlView />
               <ZoomIn />
               <ZoomOut />
+              <Basemap />
+              <Search />
             </Map>
-            <Search />
             <Logo />
-            <URLHandler />
           </Col>
 
           { /* Options */ }
-          <Col xs={12} sm={4} md={4} lg={3} style={styles.right}>
+          <Col xs={12} sm={4} md={4} lg={3} style={ styles.right }>
             <Options />
+            <Price />
             <Checkout />
           </Col>
         </Row>

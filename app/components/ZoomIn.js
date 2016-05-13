@@ -1,14 +1,10 @@
-/**
- * Zoom In
- */
 import React from 'react'
 import { Glyphicon } from 'react-bootstrap'
 
 export default class ZoomIn extends React.Component {
-
   static defaultProps = {
     zIndex: 15,
-    bottom: 70,
+    bottom: 95,
     right: 22,
     width: 35,
     height: 35,
@@ -17,13 +13,10 @@ export default class ZoomIn extends React.Component {
 
   constructor(props) {
     super(props)
-
+    this.handleClick = this.handleClick.bind(this)
     this.state = {
       hover: false
     }
-    this.handleClick = this.handleClick.bind(this)
-    this.handleMouseEnter = this.handleMouseEnter.bind(this)
-    this.handleMouseLeave = this.handleMouseLeave.bind(this)
   }
 
   handleClick() {
@@ -32,14 +25,6 @@ export default class ZoomIn extends React.Component {
     map.flyTo({
       zoom: Math.ceil(zoom) + 1
     })
-  }
-
-  handleMouseEnter() {
-    this.setState({ hover: true })
-  }
-
-  handleMouseLeave() {
-    this.setState({ hover: false })
   }
 
   render() {
@@ -71,8 +56,8 @@ export default class ZoomIn extends React.Component {
       <div
         style={ styles.container }
         onClick={ this.handleClick }
-        onMouseEnter={ this.handleMouseEnter }
-        onMouseLeave={ this.handleMouseLeave }
+        onMouseEnter={ () => this.setState({ hover: true }) }
+        onMouseLeave={ () => this.setState({ hover: false }) }
         >
         <Glyphicon style={ styles.glyph } glyph='plus' />
       </div>

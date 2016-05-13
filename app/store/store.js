@@ -3,19 +3,21 @@ import validator from 'validator'
 
 
 export const store = new class Store {
+  // HTML
+  @observable height = window.innerHeight
+  @observable width = window.innerWidth
+
   // Search
   @observable search = ''
   @observable results = []
-  @observable selected = 0
+  @observable selection = 0
 
-  // App
+  // App Options
   @observable orientation = 1
   @observable material = 2
   @observable size = 2
   @observable email = ''
   @observable basePrice = 280
-  @observable height = window.innerHeight
-  @observable width = window.innerWidth
 
   // Map
   @observable zoom = 12
@@ -23,14 +25,31 @@ export const store = new class Store {
   @observable lng = -79.382185
   @observable bearing = 0.0
   @observable pitch = 0.0
+  @observable style = 1
   @observable mapId = 'map'
   @observable token = 'pk.eyJ1IjoiYWRkeHkiLCJhIjoiY2lsdmt5NjZwMDFsdXZka3NzaGVrZDZtdCJ9.ZUE-LebQgHaBduVwL68IoQ'
-  @observable style = 'mapbox://styles/addxy/cin9l0b8d0023b4noejyuc2r7'
+
+  styleTable = {
+    1: 'mapbox://styles/addxy/cin9l0b8d0023b4noejyuc2r7',
+    2: 'mapbox://styles/mapbox/outdoors-v9',
+    3: 'mapbox://styles/mapbox/satellite-streets-v9'
+  }
 
   sizeTable = {
     1: {1: '24" x 18"', 2: '18" x 24"'},
     2: {1: '36" x 24"', 2: '24" x 36"'},
     3: {1: '42" x 36"', 2: '36" x 42"'}
+  }
+
+  materialTable = {
+    1: 'Paper',
+    2: 'Acrylic',
+    3: 'Mirrored'
+  }
+
+  orientationTable = {
+    1: 'Landscape',
+    2: 'Portrait'
   }
 
   tiel = '#4AC7B0'
@@ -42,26 +61,34 @@ export const store = new class Store {
 
   constructor() {
     window.addEventListener('resize', this.listenerResize.bind(this))
-    window.addEventListener('hashchange', this.listenerHashChange.bind(this))
   }
 
-  sizeText = (e) => {
-    return this.sizeTable[e][this.orientation]
+  @computed get isXs() {
+    return this.width < 768
+  }
+
+  @computed get isSm() {
+    return 768 <= this.width && this.width < 992
+  }
+
+  @computed get isMd() {
+    return 992 <= this.width && this.width < 1200
+  }
+
+  @computed get isLg() {
+    return this.width >= 1200
+  }
+
+  @computed get sizeText() {
+    return this.sizeTable[this.size][this.orientation]
   }
 
   @computed get materialText() {
-    return {
-      1: 'Paper',
-      2: 'Acrylic',
-      3: 'Metal'
-    }[this.material]
+    return this.materialTable[this.material]
   }
 
   @computed get orientationText() {
-    return {
-      1: 'Landscape',
-      2: 'Portrait'
-    }[this.orientation]
+    return this.orientationTable[this.orientation]
   }
 
   @computed get emailValid() {
@@ -85,11 +112,5 @@ export const store = new class Store {
   listenerResize(e) {
     this.height = window.innerHeight
     this.width = window.innerWidth
-    console.log(`Reset Height:`, this.height)
-    console.log(`Reset Width:`, this.width)
-  }
-
-  listenerHashChange(e) {
-    //
   }
 }
