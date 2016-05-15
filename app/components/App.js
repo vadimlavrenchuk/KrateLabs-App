@@ -1,8 +1,7 @@
 import 'isomorphic-fetch'
-import {Promise} from 'es6-promise'
+import { Promise } from 'es6-promise'
 import React, { Component } from 'react'
-import { render } from 'react-dom'
-import { Input, Grid, Row, Col, Button } from 'react-bootstrap'
+import { Grid, Row, Col } from 'react-bootstrap'
 import { observer } from 'mobx-react'
 import { store } from '../store'
 import {

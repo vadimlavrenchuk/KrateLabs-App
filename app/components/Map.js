@@ -1,7 +1,3 @@
-/**
- * Map
- */
-import { isArray, isUndefined, uniqueId } from 'lodash'
 import mapboxgl from 'mapbox-gl'
 import React from 'react'
 import { observer } from 'mobx-react'
@@ -17,7 +13,6 @@ export default class Map extends React.Component {
   }
 
   componentDidMount() {
-    // Create MapboxGL Map
     mapboxgl.accessToken = store.token
 
     const map = new mapboxgl.Map({
