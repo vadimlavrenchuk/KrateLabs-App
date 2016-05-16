@@ -57,8 +57,7 @@ export default class App extends Component {
     }
     return (
       <Grid fluid={ true } style={ styles.container }>
-        <Row style={ styles.row }>
-
+        <Row>
           { /* App */ }
           <URLHandler />
 

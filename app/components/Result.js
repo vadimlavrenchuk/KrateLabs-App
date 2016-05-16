@@ -1,6 +1,4 @@
 import React from 'react'
-import classNames from 'classnames'
-import { Input, Button } from 'react-bootstrap'
 import { observer } from 'mobx-react'
 import { store } from '../store'
 import { getBounds, getCenter } from './utils'
