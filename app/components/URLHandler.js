@@ -5,7 +5,7 @@ import { observer } from 'mobx-react'
 import { store } from '../store'
 
 @observer
-export default class URLHandler extends React.Component {
+export default class URLHandler extends Component {
 
   componentWillReact() {
     hashHistory.push({

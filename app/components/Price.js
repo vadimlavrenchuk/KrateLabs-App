@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { observer } from 'mobx-react'
 import { store } from '../store'
 
 @observer
-export default class Price extends React.Component {
+export default class Price extends Component {
   render() {
     let style = {
       textAlign: 'center',
