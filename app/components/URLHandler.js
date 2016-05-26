@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { hashHistory } from 'react-router'
-import { computed } from 'mobx'
 import { observer } from 'mobx-react'
 import { store } from '../store'
 
