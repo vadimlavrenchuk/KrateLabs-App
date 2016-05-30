@@ -25,8 +25,8 @@ export default class SearchRemove extends React.Component {
       position: 'absolute',
       right: -5,
       color: this.state.hover ? store.salmon : 'white',
-      fontSize: '2.5em',
-      top: 37,
+      fontSize: 20,
+      top: 20,
       cursor: `pointer`,
       textShadow: '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black'
     }

@@ -16,7 +16,14 @@ export default class Options extends React.Component {
   render() {
     let styles = {
       container: {
+        paddingTop: 50,
         textAlign: 'center'
+      },
+      title: {
+        textTransform: 'none',
+        fontWeight: 'normal',
+        color: '#E6E6DD',
+        fontFamily: '"AlteHaasGrotesk", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif',
       }
     }
     let buttonOn = 'success'
@@ -25,10 +32,10 @@ export default class Options extends React.Component {
 
     return (
       <div style={ styles.container }>
-        <h2>Options</h2>
+        <h2 style={ styles.title }>Options</h2>
 
         { /* Page Orientation */ }
-        <h4>Orientation</h4>
+        <h4 style={ styles.title }>Orientation</h4>
         <ButtonGroup bsSize={ buttonSize }>
           <Button
             bsStyle={ store.orientation == 1 ? 'danger' : buttonOff }
@@ -43,7 +50,7 @@ export default class Options extends React.Component {
         </ButtonGroup>
 
         { /* Layout Size */ }
-        <h4>Layout Size</h4>
+        <h4 style={ styles.title }>Layout Size</h4>
         <ButtonGroup bsSize={ buttonSize }>
           <Button
             bsStyle={ store.size == 1 ? buttonOn : buttonOff }
@@ -63,7 +70,7 @@ export default class Options extends React.Component {
         </ButtonGroup>
 
         { /* Material Type */ }
-        <h4>Material Type</h4>
+        <h4 style={ styles.title }>Material Type</h4>
         <ButtonGroup bsSize={ buttonSize }>
           <Button
             bsStyle={ store.material == 1 ? buttonOn : buttonOff }

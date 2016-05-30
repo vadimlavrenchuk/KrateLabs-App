@@ -23,13 +23,19 @@ export default class Checkout extends React.Component {
     const styles = {
       container: {
         textAlign: 'center',
-        padding: '20px'
+        padding: '20px',
+      },
+      title: {
+        color: '#E6E6DD',
+        textTransform: 'none',
+        fontWeight: 'normal',
+        fontFamily: '"AlteHaasGrotesk", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif',
       }
     }
 
     return (
       <div style={ styles.container }>
-        <h3>Checkout</h3>
+        <h3 style={ styles.title }>Checkout</h3>
         <Input
           bsSize="large"
           type="text"

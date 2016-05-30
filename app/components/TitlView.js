@@ -49,12 +49,13 @@ export default class TiltView extends Component {
         width: this.props.width,
         height: this.props.height,
         textAlign: 'center',
-        perspective: '50px'
+        perspective: '50px',
+        display: 'flex'
       },
       glyph: {
-        position: 'relative',
+        alignSelf: 'center',
+        flexGrow: 1,
         transition: 'all 0.3s',
-        top: this.props.height / 2 - (this.props.fontSize / 2),
         WebkitTransform: `rotateX(${ store.pitch / 1.0 }deg)`,
         fontSize: this.props.fontSize,
         textShadow: (this.state.hover) ? `0 0 7px white` : ``,

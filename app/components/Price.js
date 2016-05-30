@@ -10,7 +10,7 @@ export default class Price extends Component {
       color: 'white',
       backgroundColor: store.tiel,
       padding: '15px',
-      fontSize: '2em',
+      fontSize: '20px',
       marginTop: '25px',
       textShadow: `0 0 0.5em ${ store.grey }, 0 0 0.5em ${ store.grey }`,
     }

@@ -41,12 +41,15 @@ export default class Result extends React.Component {
   render() {
     const styles = {
       result: {
+        textTransform: 'none',
+        fontWeight: 'normal',
         fontFamily: 'fledgling',
         border: 'none',
         cursor: `pointer`,
         color: (this.state.hover) ? '#FB7461' : 'white',
         textAlign: 'left',
-        fontSize: '3em',
+        fontSize: '35px',
+        paddingBottom: '10px',
         outline: 'none',
         backgroundColor: 'transparent',
         transition: 'none',

@@ -30,6 +30,7 @@ export default class ZoomIn extends Component {
   render() {
     const styles = {
       container: {
+        display: 'flex',
         position: 'absolute',
         top: this.props.top,
         bottom: this.props.bottom,
@@ -45,8 +46,9 @@ export default class ZoomIn extends Component {
         perspective: '50px'
       },
       glyph: {
+        alignSelf: 'center',
+        flexGrow: 1,
         position: 'relative',
-        top: this.props.height / 2 - (this.props.fontSize / 2),
         fontSize: this.props.fontSize,
         textShadow: (this.state.hover) ? `0 0 7px white` : ``,
         color: (this.state.hover) ? `rgb(255, 255, 255)` : `rgb(190, 190, 190)`

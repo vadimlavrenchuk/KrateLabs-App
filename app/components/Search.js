@@ -56,7 +56,7 @@ export default class Search extends React.Component {
         left: '20%',
         right: '20%',
         width: '60%',
-        top: 25,
+        top: 70,
         zIndex: 30,
       },
       remove: {
@@ -69,13 +69,17 @@ export default class Search extends React.Component {
         textShadow: '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black'
       },
       search: {
+        textTransform: 'none',
+        fontWeight: 'normal',
         fontFamily: 'fledgling',
         border: 'none',
         color: 'white',
         borderBottom: 'grey',
         borderBottomStyle: 'dashed',
         borderBottomWidth: 'thin',
-        fontSize: '6em',
+        fontSize: '60px',
+        paddingTop: '30px',
+        paddingBottom: '30px',
         outline: 'none',
         backgroundColor: 'transparent',
         transition: 'none',

@@ -39,25 +39,28 @@ export default class App extends Component {
 
   render() {
     const styles = {
-      'container': {
+      container: {
         backgroundColor: store.grey
       },
-      'left': {
+      left: {
         height: store.height,
         padding: 0,
         margin: 0,
         overflow: 'hidden'
       },
-      'right': {
+      right: {
         overflowY: 'auto',
         padding: 0,
         height: store.height,
         paddingBottom: '50px'
+      },
+      row: {
+        marginBottom: 0
       }
     }
     return (
       <Grid fluid={ true } style={ styles.container }>
-        <Row>
+        <Row style={ styles.row }>
           { /* App */ }
           <URLHandler />
 

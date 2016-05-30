@@ -40,7 +40,7 @@ export default class SearchRemove extends React.Component {
       position: 'absolute',
       right: store.width / 2 - 20,
       color: this.state.hover ? store.salmon : 'white',
-      fontSize: '3.5em',
+      fontSize: '2em',
       zIndex: 30,
       bottom: 25,
       cursor: `pointer`,
