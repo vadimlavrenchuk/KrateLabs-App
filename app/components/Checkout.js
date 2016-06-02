@@ -2,6 +2,8 @@ import React from 'react'
 import { Input, Button } from 'react-bootstrap'
 import { observer } from 'mobx-react'
 import { store } from '../store'
+import Shopify from '../utils/shopify'
+import { product } from '../utils/kratelabs'
 
 @observer
 export default class Checkout extends React.Component {
@@ -12,7 +14,12 @@ export default class Checkout extends React.Component {
   }
 
   handleClick() {
-    console.log('Connect to Shopify API')
+    let apikey = '40676c7d883263065f21a0f02e926af4'
+    let password = '1b94c846c093bee5ef1a14a65e066450'
+    const shopify = new Shopify(apikey, password)
+
+    shopify.createProduct(product(store.search))
+      .then(product => console.log(product))
   }
 
   handleKeyDown(e) {
