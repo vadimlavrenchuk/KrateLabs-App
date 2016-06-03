@@ -3,6 +3,10 @@ import validator from 'validator'
 
 
 export const store = new class Store {
+  // API
+  @observable svg = ''
+  @observable png = ''
+
   // HTML
   @observable height = window.innerHeight
   @observable width = window.innerWidth
