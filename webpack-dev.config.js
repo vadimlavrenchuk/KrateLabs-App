@@ -52,6 +52,10 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': { NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development') },
       __DEV__: true
+    }),
+    new webpack.ProvidePlugin({
+      'Promise': 'es6-promise', // Thanks Aaron (https://gist.github.com/Couto/b29676dd1ab8714a818f#gistcomment-1584602)
+      'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
     })
   ]
 }

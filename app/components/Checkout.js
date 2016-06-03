@@ -32,7 +32,7 @@ export default class Checkout extends React.Component {
       name: store.search ? store.search : 'Custom Product'
     }
     let options = {
-      method: 'post',
+      method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': "application/x-www-form-urlencoded",
