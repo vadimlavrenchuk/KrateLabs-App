@@ -1,5 +1,3 @@
-//import 'es6-promise'
-//import 'isomorphic-fetch'
 import React from 'react'
 import { Input, Button, ButtonGroup } from 'react-bootstrap'
 import { observer } from 'mobx-react'
@@ -7,7 +5,6 @@ import Request from '../utils/Request'
 import { store } from '../store'
 import { formatPayload } from '../utils/addxy'
 import { product } from '../utils/kratelabs'
-import request from 'request'
 
 @observer
 export default class Checkout extends React.Component {

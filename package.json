@@ -64,7 +64,6 @@
     "react-bootstrap": "^0.28.5",
     "react-dom": "^0.14.8",
     "react-router": "^2.0.1",
-    "request": "^2.65.0",
     "utf8": "^2.1.1",
     "validator": "^5.2.0",
     "whatwg-fetch": "^1.0.0"
