@@ -1,5 +1,3 @@
-import 'isomorphic-fetch'
-import { Promise } from 'es6-promise'
 import React, { Component } from 'react'
 import { Grid, Row, Col } from 'react-bootstrap'
 import { observer } from 'mobx-react'

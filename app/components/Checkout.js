@@ -1,13 +1,13 @@
-"use strict"
+//import 'es6-promise'
+//import 'isomorphic-fetch'
 import React from 'react'
 import { Input, Button, ButtonGroup } from 'react-bootstrap'
 import { observer } from 'mobx-react'
+import Request from '../utils/Request'
 import { store } from '../store'
 import { formatPayload } from '../utils/addxy'
 import { product } from '../utils/kratelabs'
-import { Promise } from 'es6-promise'
-import 'isomorphic-fetch'
-
+import request from 'request'
 
 @observer
 export default class Checkout extends React.Component {
@@ -19,34 +19,35 @@ export default class Checkout extends React.Component {
     }
   }
 
-  handleClick() {
-    let url = `https://api.kratelabs.addxy.com/product`
+  async handleClick() {
     let payload = {
-      access_token: store.token,
       lat: store.lat,
       lng: store.lng,
       zoom: store.zoom,
       bearing: store.bearing,
       pitch: store.pitch,
-      email: store.email,
-      name: store.search ? store.search : 'Custom Product'
+      email: store.email
     }
-    let options = {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': "application/x-www-form-urlencoded",
-        'Access-Control-Allow-Origin': '*',
-        'Cache-Control': 'no-cache'
-      },
-      body: formatPayload(payload),
+    let authentication = {
+      username: 'Kratelabs',
+      password: 'Kratelabs'
     }
-    fetch(url, options)
-      .then(response => response.json())
-      .then(data => {
-        store.svg = data.svg
-        store.png = data.png
-      })
+    let { token } = await Request.post({
+      url: 'https://api.kratelabs.addxy.com/token',
+      authentication: authentication,
+      payload: {
+        grant_type: 'client_credentials',
+        email: store.email
+      }
+    })
+    console.log(token)
+    let product = await Request.post({
+      url: 'https://api.kratelabs.addxy.com/product',
+      authentication: `Bearer ${ token }`,
+      payload: payload
+    })
+    console.log(product.id)
+    window.location = `https://kratelabs.com/products/${ product.id }`
   }
 
   handleKeyDown(e) {

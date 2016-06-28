@@ -1,7 +1,6 @@
 import { observable, computed } from 'mobx'
 import validator from 'validator'
 
-
 export const store = new class Store {
   // API
   @observable svg = ''

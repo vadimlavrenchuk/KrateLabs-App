@@ -1,5 +1,3 @@
-import 'isomorphic-fetch'
-import { Promise } from 'es6-promise'
 import { variants, options, product } from './kratelabs'
 
 export default class Shopify {

@@ -1,6 +1,3 @@
-import 'isomorphic-fetch'
-import 'whatwg-fetch'
-import { Promise } from 'es6-promise'
 import { variants, options, product } from './kratelabs'
 
 export function formatPayload(payload) {
