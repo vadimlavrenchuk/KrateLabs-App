@@ -35,8 +35,8 @@ export default class Map extends React.Component {
   handleMove(e) {
     store.zoom = map.getZoom().toPrecision(3)
     store.center = map.getCenter()
-    store.lat = store.center.lat.toPrecision(4)
-    store.lng = store.center.lng.toPrecision(5)
+    store.lat = store.center.lat.toPrecision(6)
+    store.lng = store.center.lng.toPrecision(6)
     store.pitch = Math.floor(map.getPitch())
     store.bearing = Math.floor(map.getBearing())
   }

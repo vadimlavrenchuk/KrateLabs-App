@@ -15,8 +15,9 @@ Open your favorite browser to [http://localhost:8080](http://localhost:8080)
 
 ## Publish
 
-Use Nginx to publish to the web using port 80.
+Build local app bundle and publish to AWS S3 bucket.
 
 ```bash
-$ sudo docker run -d --name kratelabs-web -p 80:80 -v $(pwd)/dist:/usr/share/nginx/html nginx:alpine
+$ npm run build
+$ npm run publish
 ```

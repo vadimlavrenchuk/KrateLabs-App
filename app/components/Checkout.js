@@ -12,11 +12,12 @@ export default class Checkout extends React.Component {
     super(props)
     this.handleKeyDown = this.handleKeyDown.bind(this)
     this.state = {
-      svg: ''
+      active: false
     }
   }
 
-  async handleClick() {
+  handleClick() {
+    this.setState({ active: true })
     let payload = {
       lat: store.lat,
       lng: store.lng,
@@ -31,8 +32,7 @@ export default class Checkout extends React.Component {
       password: 'Kratelabs'
     }
     let api_url = 'https://api.kratelabs.addxy.com'
-    //let api_url = 'http://localhost:5000'
-    let { token } = await Request.post({
+    Request.post({
       url: `${ api_url }/token`,
       authentication: authentication,
       payload: {
@@ -40,14 +40,17 @@ export default class Checkout extends React.Component {
         email: store.email
       }
     })
-    console.log(token)
-    let product = await Request.post({
-      url: `${ api_url }/product`,
-      authentication: `Bearer ${ token }`,
-      payload: payload
+    .then(token => {
+      Request.post({
+        url: `${ api_url }/product`,
+        authentication: `Bearer ${ token.token }`,
+        payload: payload
+      })
+      .then(product => {
+        if (product.ok) window.location = `https://kratelabs.com/products/${ product.id }`
+        else { this.setState({ active: false }) }
+      })
     })
-    console.log(product.id)
-    window.location = `https://kratelabs.com/products/${ product.id }`
   }
 
   handleKeyDown(e) {
@@ -83,32 +86,18 @@ export default class Checkout extends React.Component {
           onKeyDown={ this.handleKeyDown }
           onChange={ (e) => store.email = e.target.value }
         />
+        { !this.state.active &&
         <Button
           bsStyle={ store.emailValid ? 'danger' : 'default' }
           disabled={ !store.emailValid }
           onClick={ this.handleClick }>
           Add to Cart
         </Button>
-        { store.svg &&
-        <div>
-          <br />
-          <ButtonGroup bsSize={'small'}>
-            <Button
-              bsStyle={ 'info' }
-              href={ store.svg }
-              onClick={ () => console.log(store.svg) }>
-              SVG
-            </Button>
-            <Button
-              bsStyle={ 'info' }
-              href={ store.png }
-              onClick={ () => console.log(store.png) }>
-              PNG
-            </Button>
-          </ButtonGroup>
-        </div>
         }
-      </div>
+        { this.state.active &&
+        <img src={ require('../images/loader.gif') } height="25px" alt="Loading..." />
+        }
+    </div>
     )
   }
 }

@@ -121,13 +121,14 @@
                 "name": "POI labels (scalerank 4)",
                 "collapsed": true
             }
-        }
+        },
+        "mapbox:trackposition": false
     },
     "center": [
-        -75.67826654083095,
-        45.45703604491129
+        -75.68291692677435,
+        45.3813472335444
     ],
-    "zoom": 18.00765256170456,
+    "zoom": 10.366583697313153,
     "bearing": 0,
     "pitch": 0,
     "sources": {
@@ -136,7 +137,7 @@
             "type": "vector"
         }
     },
-    "sprite": "mapbox://sprites/addxy/ciq402xn6000ub0kq6x5ra99m",
+    "sprite": "mapbox://sprites/addxy/ciq40e6zx0010bkmbbo513b6s",
     "glyphs": "mapbox://fonts/addxy/{fontstack}/{range}.pbf",
     "layers": [
         {
@@ -2005,7 +2006,8 @@
                 ]
             ],
             "layout": {
-                "line-join": "round"
+                "line-join": "round",
+                "visibility": "none"
             },
             "paint": {
                 "line-width": {
@@ -2212,7 +2214,8 @@
                 ]
             ],
             "layout": {
-                "line-join": "round"
+                "line-join": "round",
+                "line-cap": "round"
             },
             "paint": {
                 "line-width": {
@@ -2224,38 +2227,16 @@
                         ],
                         [
                             18,
-                            12
+                            6
                         ]
                     ]
                 },
                 "line-color": "hsl(0, 0%, 100%)",
                 "line-opacity": 1,
-                "line-dasharray": {
-                    "base": 1,
-                    "stops": [
-                        [
-                            14,
-                            [
-                                1,
-                                0
-                            ]
-                        ],
-                        [
-                            15,
-                            [
-                                1.5,
-                                0.4
-                            ]
-                        ],
-                        [
-                            16,
-                            [
-                                1,
-                                0.2
-                            ]
-                        ]
-                    ]
-                }
+                "line-dasharray": [
+                    1,
+                    0
+                ]
             }
         },
         {
@@ -2448,16 +2429,12 @@
                     "base": 1.5,
                     "stops": [
                         [
-                            8.5,
-                            0.5
-                        ],
-                        [
                             10,
-                            0.75
+                            0.35
                         ],
                         [
                             18,
-                            26
+                            13
                         ]
                     ]
                 },
@@ -2667,11 +2644,11 @@
                     "stops": [
                         [
                             5,
-                            0.75
+                            0.35
                         ],
                         [
                             18,
-                            32
+                            16
                         ]
                     ]
                 },
@@ -5174,7 +5151,8 @@
             ],
             "layout": {
                 "line-cap": "round",
-                "line-join": "round"
+                "line-join": "round",
+                "visibility": "none"
             },
             "paint": {
                 "line-width": {
@@ -5242,7 +5220,8 @@
                 ]
             ],
             "layout": {
-                "line-join": "round"
+                "line-join": "round",
+                "visibility": "none"
             },
             "paint": {
                 "line-width": {
@@ -6216,7 +6195,8 @@
                 ]
             ],
             "layout": {
-                "line-join": "round"
+                "line-join": "round",
+                "line-cap": "round"
             },
             "paint": {
                 "line-width": {
@@ -6233,39 +6213,6 @@
                     ]
                 },
                 "line-color": "hsl(0, 0%, 100%)",
-                "line-dasharray": {
-                    "base": 1,
-                    "stops": [
-                        [
-                            14,
-                            [
-                                1,
-                                0
-                            ]
-                        ],
-                        [
-                            15,
-                            [
-                                1.75,
-                                1
-                            ]
-                        ],
-                        [
-                            16,
-                            [
-                                1,
-                                0.75
-                            ]
-                        ],
-                        [
-                            17,
-                            [
-                                1,
-                                0.5
-                            ]
-                        ]
-                    ]
-                },
                 "line-opacity": {
                     "base": 1,
                     "stops": [
@@ -6278,16 +6225,48 @@
                             1
                         ]
                     ]
-                }
+                },
+                "line-dasharray": [
+                    1,
+                    0
+                ]
             }
         },
         {
             "id": "bridge-steps",
+            "type": "line",
             "metadata": {
                 "mapbox:group": "1444855799204.86"
             },
-            "ref": "bridge-steps-bg",
+            "source": "composite",
+            "source-layer": "road",
             "interactive": true,
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "$type",
+                    "LineString"
+                ],
+                [
+                    "all",
+                    [
+                        "==",
+                        "structure",
+                        "bridge"
+                    ],
+                    [
+                        "==",
+                        "type",
+                        "steps"
+                    ]
+                ]
+            ],
+            "layout": {
+                "line-join": "round",
+                "line-cap": "round",
+                "visibility": "visible"
+            },
             "paint": {
                 "line-width": {
                     "base": 1.5,
@@ -6302,44 +6281,15 @@
                         ],
                         [
                             18,
-                            6
+                            4
                         ]
                     ]
                 },
                 "line-color": "hsl(0, 0%, 100%)",
-                "line-dasharray": {
-                    "base": 1,
-                    "stops": [
-                        [
-                            14,
-                            [
-                                1,
-                                0
-                            ]
-                        ],
-                        [
-                            15,
-                            [
-                                1.75,
-                                1
-                            ]
-                        ],
-                        [
-                            16,
-                            [
-                                1,
-                                0.75
-                            ]
-                        ],
-                        [
-                            17,
-                            [
-                                0.3,
-                                0.3
-                            ]
-                        ]
-                    ]
-                },
+                "line-dasharray": [
+                    1,
+                    0
+                ],
                 "line-opacity": {
                     "base": 1,
                     "stops": [
@@ -6650,15 +6600,15 @@
                     "stops": [
                         [
                             12.5,
-                            0.5
+                            0.25
                         ],
                         [
                             14,
-                            2
+                            1
                         ],
                         [
                             18,
-                            18
+                            9
                         ]
                     ]
                 },
@@ -6710,16 +6660,12 @@
                     "base": 1.5,
                     "stops": [
                         [
-                            8.5,
-                            0.5
-                        ],
-                        [
                             10,
-                            0.75
+                            0.35
                         ],
                         [
                             18,
-                            26
+                            13
                         ]
                     ]
                 },
@@ -11152,9 +11098,9 @@
             }
         }
     ],
-    "created": "2016-07-01T17:14:56.170Z",
-    "id": "ciq402xn6000ub0kq6x5ra99m",
-    "modified": "2016-07-01T17:14:56.170Z",
+    "created": "2016-07-01T17:23:41.513Z",
+    "id": "ciq40e6zx0010bkmbbo513b6s",
+    "modified": "2016-07-01T18:33:53.099Z",
     "owner": "addxy",
     "draft": false
 }
