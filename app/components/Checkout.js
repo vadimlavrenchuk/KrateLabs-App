@@ -11,12 +11,13 @@ export default class Checkout extends React.Component {
   constructor(props) {
     super(props)
     this.handleKeyDown = this.handleKeyDown.bind(this)
+    this.handleClick = this.handleClick.bind(this)
     this.state = {
       active: false
     }
   }
 
-  handleClick() {
+  async handleClick() {
     this.setState({ active: true })
     let payload = {
       lat: store.lat,
@@ -32,7 +33,7 @@ export default class Checkout extends React.Component {
       password: 'Kratelabs'
     }
     let api_url = 'https://api.kratelabs.addxy.com'
-    Request.post({
+    let token = await Request.post({
       url: `${ api_url }/token`,
       authentication: authentication,
       payload: {
@@ -40,17 +41,16 @@ export default class Checkout extends React.Component {
         email: store.email
       }
     })
-    .then(token => {
-      Request.post({
-        url: `${ api_url }/product`,
-        authentication: `Bearer ${ token.token }`,
-        payload: payload
-      })
-      .then(product => {
-        if (product.ok) window.location = `https://kratelabs.com/products/${ product.id }`
-        else { this.setState({ active: false }) }
-      })
+    if (!token.ok) { this.setState({ active: false }) }
+
+    let product = await Request.post({
+      url: `${ api_url }/product`,
+      authentication: `Bearer ${ token.token }`,
+      payload: payload
     })
+
+    if (product.ok) window.location = `https://kratelabs.com/products/${ product.id }`
+    else { this.setState({ active: false }) }
   }
 
   handleKeyDown(e) {

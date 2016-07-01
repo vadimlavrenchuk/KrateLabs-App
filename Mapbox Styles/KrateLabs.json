@@ -35,7 +35,7 @@
             },
             "1444855786460.0557": {
                 "name": "Roads",
-                "collapsed": false
+                "collapsed": true
             },
             "1444856071629.7817": {
                 "name": "Place labels",
@@ -79,7 +79,7 @@
             },
             "1444855799204.86": {
                 "name": "Bridges",
-                "collapsed": false
+                "collapsed": true
             },
             "1444856087950.3635": {
                 "name": "Marine labels",
@@ -87,7 +87,7 @@
             },
             "1456969573402.7817": {
                 "name": "Hillshading",
-                "collapsed": true
+                "collapsed": false
             },
             "1444856869758.2375": {
                 "name": "Wetlands",
@@ -103,7 +103,7 @@
             },
             "1444855769305.6016": {
                 "name": "Tunnels",
-                "collapsed": false
+                "collapsed": true
             },
             "1456970288113.8113": {
                 "name": "Landcover",
@@ -111,7 +111,7 @@
             },
             "1444856144497.7825": {
                 "name": "Country labels",
-                "collapsed": false
+                "collapsed": true
             },
             "1444856712129.5933": {
                 "name": "Waterways",
@@ -494,7 +494,9 @@
                 "level",
                 94
             ],
-            "layout": {},
+            "layout": {
+                "visibility": "none"
+            },
             "paint": {
                 "fill-color": "hsl(0, 0%, 100%)",
                 "fill-opacity": {
@@ -527,7 +529,9 @@
                 "level",
                 90
             ],
-            "layout": {},
+            "layout": {
+                "visibility": "none"
+            },
             "paint": {
                 "fill-color": "hsl(0, 0%, 0%)",
                 "fill-opacity": {
@@ -560,7 +564,9 @@
                 "level",
                 89
             ],
-            "layout": {},
+            "layout": {
+                "visibility": "none"
+            },
             "paint": {
                 "fill-color": "hsl(56, 59%, 22%)",
                 "fill-opacity": {
@@ -593,7 +599,9 @@
                 "level",
                 78
             ],
-            "layout": {},
+            "layout": {
+                "visibility": "none"
+            },
             "paint": {
                 "fill-color": "hsl(56, 59%, 22%)",
                 "fill-opacity": {
@@ -626,7 +634,9 @@
                 "level",
                 67
             ],
-            "layout": {},
+            "layout": {
+                "visibility": "none"
+            },
             "paint": {
                 "fill-color": "hsl(56, 59%, 22%)",
                 "fill-opacity": {
@@ -659,7 +669,9 @@
                 "level",
                 56
             ],
-            "layout": {},
+            "layout": {
+                "visibility": "none"
+            },
             "paint": {
                 "fill-color": "hsl(56, 59%, 22%)",
                 "fill-opacity": {
@@ -7607,7 +7619,8 @@
                 ]
             ],
             "layout": {
-                "line-join": "bevel"
+                "line-join": "bevel",
+                "visibility": "none"
             },
             "paint": {
                 "line-color": "hsl(0, 0%, 100%)",
@@ -7684,7 +7697,8 @@
                 ]
             ],
             "layout": {
-                "line-join": "miter"
+                "line-join": "miter",
+                "visibility": "none"
             },
             "paint": {
                 "line-width": {
@@ -7760,27 +7774,10 @@
                 "line-cap": "round"
             },
             "paint": {
-                "line-dasharray": {
-                    "base": 1,
-                    "stops": [
-                        [
-                            6,
-                            [
-                                2,
-                                0
-                            ]
-                        ],
-                        [
-                            7,
-                            [
-                                2,
-                                2,
-                                6,
-                                2
-                            ]
-                        ]
-                    ]
-                },
+                "line-dasharray": [
+                    1,
+                    0
+                ],
                 "line-width": {
                     "base": 1,
                     "stops": [
@@ -11100,7 +11097,7 @@
     ],
     "created": "2016-07-01T17:23:41.513Z",
     "id": "ciq40e6zx0010bkmbbo513b6s",
-    "modified": "2016-07-01T18:33:53.099Z",
+    "modified": "2016-07-01T18:49:24.625Z",
     "owner": "addxy",
     "draft": false
 }
