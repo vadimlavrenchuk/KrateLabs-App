@@ -33,7 +33,7 @@ export const store = new class Store {
   @observable token = 'pk.eyJ1IjoiYWRkeHkiLCJhIjoiY2lsdmt5NjZwMDFsdXZka3NzaGVrZDZtdCJ9.ZUE-LebQgHaBduVwL68IoQ'
 
   styleTable = {
-    1: 'mapbox://styles/addxy/cin9l0b8d0023b4noejyuc2r7',
+    1: 'mapbox://styles/addxy/ciq40e6zx0010bkmbbo513b6s',
     2: 'mapbox://styles/mapbox/outdoors-v9',
     3: 'mapbox://styles/mapbox/satellite-streets-v9'
   }

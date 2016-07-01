@@ -23,14 +23,17 @@ export default class Checkout extends React.Component {
       zoom: store.zoom,
       bearing: store.bearing,
       pitch: store.pitch,
-      email: store.email
+      email: store.email,
+      style: store.styleTable[1]
     }
     let authentication = {
       username: 'Kratelabs',
       password: 'Kratelabs'
     }
+    let api_url = 'https://api.kratelabs.addxy.com'
+    //let api_url = 'http://localhost:5000'
     let { token } = await Request.post({
-      url: 'https://api.kratelabs.addxy.com/token',
+      url: `${ api_url }/token`,
       authentication: authentication,
       payload: {
         grant_type: 'client_credentials',
@@ -39,7 +42,7 @@ export default class Checkout extends React.Component {
     })
     console.log(token)
     let product = await Request.post({
-      url: 'https://api.kratelabs.addxy.com/product',
+      url: `${ api_url }/product`,
       authentication: `Bearer ${ token }`,
       payload: payload
     })
