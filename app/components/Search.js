@@ -56,7 +56,7 @@ export default class Search extends React.Component {
         left: '20%',
         right: '20%',
         width: '60%',
-        top: 70,
+        top: 90,
         zIndex: 30,
       },
       remove: {

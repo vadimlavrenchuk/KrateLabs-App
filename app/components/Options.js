@@ -16,7 +16,7 @@ export default class Options extends React.Component {
   render() {
     let styles = {
       container: {
-        paddingTop: 50,
+        paddingTop: 90,
         textAlign: 'center'
       },
       title: {
@@ -37,56 +37,40 @@ export default class Options extends React.Component {
         { /* Page Orientation */ }
         <h4 style={ styles.title }>Orientation</h4>
         <ButtonGroup bsSize={ buttonSize }>
-          <Button
-            bsStyle={ store.orientation == 1 ? 'danger' : buttonOff }
-            onClick={ () => store.orientation = 1 }>
-            Landscape
-          </Button>
-          <Button
-            bsStyle={ store.orientation == 2 ? 'danger' : buttonOff }
-            onClick={ () => store.orientation = 2 }>
-            Portrait
-          </Button>
+          { Object.keys(store.orientationTable).map(key => 
+            <Button
+              key={ key }
+              bsStyle={ store.orientation == key ? 'danger' : buttonOff }
+              onClick={ () => store.orientation = key }>
+              { store.orientationTable[key] }
+            </Button>
+          )}
         </ButtonGroup>
 
         { /* Layout Size */ }
         <h4 style={ styles.title }>Layout Size</h4>
         <ButtonGroup bsSize={ buttonSize }>
-          <Button
-            bsStyle={ store.size == 1 ? buttonOn : buttonOff }
-            onClick={ () => store.size = 1 }>
-            { store.sizeTable[1][store.orientation] }
-          </Button>
-          <Button
-            bsStyle={ store.size == 2 ? buttonOn : buttonOff }
-            onClick={ () => store.size = 2 }>
-            { store.sizeTable[2][store.orientation] }
-          </Button>
-          <Button
-            bsStyle={ store.size == 3 ? buttonOn : buttonOff }
-            onClick={ () => store.size = 3 }>
-            { store.sizeTable[3][store.orientation] }
-          </Button>
+          { Object.keys(store.sizeTable).map(key =>
+            <Button
+              key={ key }
+              bsStyle={ store.size == key ? buttonOn : buttonOff }
+              onClick={ () => store.size = key }>
+              { store.sizeTable[key][store.orientation] }
+            </Button>
+          )}
         </ButtonGroup>
 
         { /* Material Type */ }
         <h4 style={ styles.title }>Material Type</h4>
         <ButtonGroup bsSize={ buttonSize }>
-          <Button
-            bsStyle={ store.material == 1 ? buttonOn : buttonOff }
-            onClick={ () => store.material = 1 }>
-            { store.materialTable[1] }
-          </Button>
-          <Button
-            bsStyle={ store.material == 2 ? buttonOn : buttonOff }
-            onClick={ () => store.material = 2 }>
-            { store.materialTable[2] }
-          </Button>
-          <Button
-            bsStyle={ store.material == 3 ? buttonOn : buttonOff }
-            onClick={ () => store.material = 3 }>
-            { store.materialTable[3] }
-          </Button>
+          { Object.keys(store.materialTable).map(key =>
+            <Button
+              key={ key }
+              bsStyle={ store.material == key ? buttonOn : buttonOff }
+              onClick={ () => store.material = key }>
+              { store.materialTable[key] }
+            </Button>
+          )}
         </ButtonGroup>
       </div>
     )

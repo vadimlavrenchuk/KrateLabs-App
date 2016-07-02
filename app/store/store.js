@@ -17,10 +17,9 @@ export const store = new class Store {
 
   // App Options
   @observable orientation = 1
-  @observable material = 2
-  @observable size = 2
+  @observable material = 1
+  @observable size = 1
   @observable email = ''
-  @observable basePrice = 280
 
   // Map
   @observable zoom = 12
@@ -41,13 +40,12 @@ export const store = new class Store {
   sizeTable = {
     1: {1: '24" x 18"', 2: '18" x 24"'},
     2: {1: '36" x 24"', 2: '24" x 36"'},
-    3: {1: '42" x 36"', 2: '36" x 42"'}
+    3: {1: '42" x 36"', 2: '36" x 48"'}
   }
 
   materialTable = {
-    1: 'Paper',
-    2: 'Acrylic',
-    3: 'Mirrored'
+    1: 'Acrylic'
+    2: 'Photo Film',
   }
 
   orientationTable = {
@@ -103,17 +101,19 @@ export const store = new class Store {
   }
 
   @computed get price() {
-    const materialFactor = {
-      1: 0.5,
-      2: 1,
-      3: 2
+    let materialFactor = {
+      1: 1,
+      2: 0.5
     }
-    const sizeFactor = {
-      1: 0.5,
-      2: 1,
-      3: 1.5
+    let sizeFactor = {
+      1: 450,
+      2: 550,
+      3: 650
     }
-    return this.basePrice * materialFactor[this.material] * sizeFactor[this.size]
+    // # Variants
+    // this.size = (1: Medium, 2: Large, 3: X-Large)
+    // this.material = (1: Acrylic, 2: Photo Film)
+    return sizeFactor[this.size] * materialFactor[this.material]
   }
 
   listenerResize(e) {
