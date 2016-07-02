@@ -73,7 +73,7 @@ export default class Checkout extends React.Component {
 
     return (
       <div style={ styles.container }>
-        <h3 style={ styles.title }>Checkout</h3>
+        <h3 style={ styles.title }>Create Product</h3>
         <Input
           bsSize="large"
           type="text"

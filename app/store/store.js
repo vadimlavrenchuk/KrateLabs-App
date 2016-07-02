@@ -44,8 +44,8 @@ export const store = new class Store {
   }
 
   materialTable = {
-    1: 'Acrylic'
-    2: 'Photo Film',
+    1: 'Acrylic',
+    2: 'Photo Film'
   }
 
   orientationTable = {
