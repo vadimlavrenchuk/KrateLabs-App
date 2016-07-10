@@ -1,0 +1,155 @@
+{
+    "version": 8,
+    "name": "KrateLabs (Water)",
+    "metadata": {
+        "mapbox:autocomposite": true,
+        "mapbox:type": "default",
+        "mapbox:groups": {
+            "98bae7c9d5baa91d45837c6554d901dc": {
+                "name": "Group",
+                "collapsed": false
+            }
+        },
+        "mapbox:trackposition": false
+    },
+    "center": [
+        -75.68291692677435,
+        45.3813472335444
+    ],
+    "zoom": 10.366583697313153,
+    "bearing": 0,
+    "pitch": 0,
+    "sources": {
+        "composite": {
+            "url": "mapbox://mapbox.mapbox-streets-v7",
+            "type": "vector"
+        }
+    },
+    "sprite": "mapbox://sprites/addxy/ciq4i2skg000u7mnnpxcnpans",
+    "glyphs": "mapbox://fonts/addxy/{fontstack}/{range}.pbf",
+    "layers": [
+        {
+            "id": "background",
+            "type": "background",
+            "interactive": true,
+            "layout": {},
+            "paint": {
+                "background-color": "hsl(0, 0%, 100%)"
+            }
+        },
+        {
+            "id": "waterway-river-canal",
+            "type": "line",
+            "metadata": {
+                "mapbox:group": "98bae7c9d5baa91d45837c6554d901dc"
+            },
+            "source": "composite",
+            "source-layer": "waterway",
+            "minzoom": 8,
+            "interactive": true,
+            "filter": [
+                "in",
+                "class",
+                "canal",
+                "river"
+            ],
+            "layout": {
+                "line-cap": {
+                    "base": 1,
+                    "stops": [
+                        [
+                            0,
+                            "butt"
+                        ],
+                        [
+                            11,
+                            "round"
+                        ]
+                    ]
+                },
+                "line-join": "round",
+                "visibility": "visible"
+            },
+            "paint": {
+                "line-color": "hsl(0, 0%, 0%)",
+                "line-width": 0.7,
+                "line-opacity": 1
+            }
+        },
+        {
+            "id": "waterway-small",
+            "type": "line",
+            "metadata": {
+                "mapbox:group": "98bae7c9d5baa91d45837c6554d901dc"
+            },
+            "source": "composite",
+            "source-layer": "waterway",
+            "minzoom": 13,
+            "interactive": true,
+            "filter": [
+                "!in",
+                "class",
+                "canal",
+                "river"
+            ],
+            "layout": {
+                "line-join": "round",
+                "line-cap": "round",
+                "visibility": "visible"
+            },
+            "paint": {
+                "line-color": "hsl(0, 0%, 0%)",
+                "line-width": 0.7,
+                "line-opacity": 1
+            }
+        },
+        {
+            "id": "water-shadow",
+            "type": "line",
+            "metadata": {
+                "mapbox:group": "98bae7c9d5baa91d45837c6554d901dc"
+            },
+            "source": "composite",
+            "source-layer": "water",
+            "interactive": true,
+            "layout": {},
+            "paint": {
+                "line-color": "hsl(0, 0%, 0%)",
+                "line-opacity": 1,
+                "line-width": 0.7
+            }
+        },
+        {
+            "id": "water fill",
+            "type": "fill",
+            "metadata": {
+                "mapbox:group": "98bae7c9d5baa91d45837c6554d901dc"
+            },
+            "source": "composite",
+            "source-layer": "water",
+            "interactive": true,
+            "layout": {},
+            "paint": {
+                "fill-color": "hsl(0, 0%, 100%)"
+            }
+        },
+        {
+            "id": "water",
+            "metadata": {
+                "mapbox:group": "98bae7c9d5baa91d45837c6554d901dc"
+            },
+            "ref": "water-shadow",
+            "interactive": true,
+            "paint": {
+                "line-color": "hsl(0, 0%, 0%)",
+                "line-opacity": 1,
+                "line-width": 0.7
+            }
+        }
+    ],
+    "created": "2016-07-02T01:38:42.683Z",
+    "id": "ciq4i2skg000u7mnnpxcnpans",
+    "modified": "2016-07-02T01:42:30.027Z",
+    "owner": "addxy",
+    "draft": false
+}

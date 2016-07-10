@@ -1,0 +1,77 @@
+{
+    "version": 8,
+    "name": "KrateLabs (Buildings)",
+    "metadata": {
+        "mapbox:autocomposite": true,
+        "mapbox:type": "default",
+        "mapbox:groups": {},
+        "mapbox:trackposition": false
+    },
+    "center": [
+        -75.69304191485314,
+        45.41915578540687
+    ],
+    "zoom": 14.072520520122,
+    "bearing": 0,
+    "pitch": 0,
+    "sources": {
+        "composite": {
+            "url": "mapbox://mapbox.mapbox-streets-v7",
+            "type": "vector"
+        }
+    },
+    "sprite": "mapbox://sprites/addxy/ciq4i1vdo001jb2niy9z38i9a",
+    "glyphs": "mapbox://fonts/addxy/{fontstack}/{range}.pbf",
+    "layers": [
+        {
+            "id": "background",
+            "type": "background",
+            "interactive": true,
+            "layout": {},
+            "paint": {
+                "background-color": "hsl(0, 0%, 100%)"
+            }
+        },
+        {
+            "id": "building-line",
+            "type": "line",
+            "source": "composite",
+            "source-layer": "building",
+            "interactive": true,
+            "filter": [
+                "==",
+                "underground",
+                "false"
+            ],
+            "layout": {},
+            "paint": {
+                "line-width": 0.7
+            }
+        },
+        {
+            "id": "aeroway",
+            "type": "line",
+            "source": "composite",
+            "source-layer": "aeroway",
+            "interactive": true,
+            "filter": [
+                "in",
+                "$type",
+                "LineString",
+                "Point",
+                "Polygon"
+            ],
+            "layout": {
+                "visibility": "visible"
+            },
+            "paint": {
+                "line-width": 0.7
+            }
+        }
+    ],
+    "created": "2016-07-02T01:37:59.921Z",
+    "id": "ciq4i1vdo001jb2niy9z38i9a",
+    "modified": "2016-07-02T01:42:49.653Z",
+    "owner": "addxy",
+    "draft": false
+}
