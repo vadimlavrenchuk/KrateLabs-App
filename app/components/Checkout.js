@@ -13,12 +13,13 @@ export default class Checkout extends React.Component {
     this.handleKeyDown = this.handleKeyDown.bind(this)
     this.handleClick = this.handleClick.bind(this)
     this.state = {
-      active: false
+      active: false,
+      error: false
     }
   }
 
   async handleClick() {
-    this.setState({ active: true })
+    this.setState({ active: true, error: false })
     let payload = {
       lat: store.lat,
       lng: store.lng,
@@ -40,17 +41,22 @@ export default class Checkout extends React.Component {
         grant_type: 'client_credentials',
         email: store.email
       }
-    })
-    if (!token.ok) { this.setState({ active: false }) }
+    }).then(
+      data => data,
+      error => { if (error) { this.setState({ active: false, error: true })}}
+    )
 
     let product = await Request.post({
       url: `${ api_url }/product`,
       authentication: `Bearer ${ token.token }`,
       payload: payload
-    })
+    }).then(
+      data => data,
+      error => { if (error) { this.setState({ active: false, error: true })}}
+    )
 
     if (product.ok) window.location = `https://kratelabs.com/products/${ product.id }`
-    else { this.setState({ active: false }) }
+    else { this.setState({ active: false, error: true }) }
   }
 
   handleKeyDown(e) {
@@ -68,6 +74,11 @@ export default class Checkout extends React.Component {
         textTransform: 'none',
         fontWeight: 'normal',
         fontFamily: '"AlteHaasGrotesk", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif',
+      },
+      error: {
+        padding: '5px',
+        fontWeight: 'bold',
+        color: 'rgb(237, 58, 58)'
       }
     }
 
@@ -96,6 +107,9 @@ export default class Checkout extends React.Component {
         }
         { this.state.active &&
         <img src={ require('../images/loader.gif') } height="25px" alt="Loading..." />
+        }
+        { this.state.error &&
+          <div style={ styles.error }>Internal Server Error</div>
         }
     </div>
     )
