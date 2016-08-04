@@ -3,9 +3,35 @@ import React from 'react'
 import { observer } from 'mobx-react'
 import { store } from '../store'
 
+function fixLongitude(lng) {
+  console.log(lng)
+  // Positive
+  if (lng > 180) {
+    // West
+    if (Math.floor(Math.abs(lng) / 180 % 2) == 1) {
+      return -180 + lng % 180
+    }
+    // East
+    else {
+      return lng % 180
+    }
+  }
+  // Negative
+  else if (lng < -180) {
+    // West
+    if (Math.floor(Math.abs(lng) / 180 % 2) == 1) {
+      return 180 + lng % 180
+    }
+    // East
+    else {
+      return lng % 180
+    }
+  }
+  return lng
+}
+
 @observer
 export default class Map extends React.Component {
-
   constructor(props) {
     super(props)
     this.state = { active: false }
@@ -36,7 +62,7 @@ export default class Map extends React.Component {
     store.zoom = map.getZoom().toPrecision(3)
     store.center = map.getCenter()
     store.lat = store.center.lat.toPrecision(6)
-    store.lng = store.center.lng.toPrecision(6)
+    store.lng = fixLongitude(store.center.lng).toPrecision(6)
     store.pitch = Math.floor(map.getPitch())
     store.bearing = Math.floor(map.getBearing())
   }
