@@ -3,9 +3,10 @@ import validator from 'validator'
 
 export const store = new class Store {
   // API
+  api_url = 'https://api.kratelabs.addxy.com'
   @observable svg = ''
   @observable png = ''
-
+  
   // HTML
   @observable height = window.innerHeight
   @observable width = window.innerWidth

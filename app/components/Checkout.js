@@ -3,7 +3,6 @@ import { Input, Button, ButtonGroup } from 'react-bootstrap'
 import { observer } from 'mobx-react'
 import Request from '../utils/Request'
 import { store } from '../store'
-import { formatPayload } from '../utils/addxy'
 import { product } from '../utils/kratelabs'
 
 @observer
@@ -33,7 +32,7 @@ export default class Checkout extends React.Component {
       username: 'Kratelabs',
       password: 'Kratelabs'
     }
-    let api_url = 'https://api.kratelabs.addxy.com'
+    let api_url = store.api_url
     let token = await Request.post({
       url: `${ api_url }/token`,
       authentication: authentication,
