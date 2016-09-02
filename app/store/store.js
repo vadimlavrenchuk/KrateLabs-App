@@ -3,7 +3,7 @@ import validator from 'validator'
 
 export const store = new class Store {
   // API
-  api_url = 'https://api.kratelabs.addxy.com'
+  api_url = 'https://api.kratelabs.com'
   @observable svg = ''
   @observable png = ''
   
@@ -122,7 +122,6 @@ export const store = new class Store {
     }
     const material = this.materialTable[this.material]
     const size = this.sizeTableName[this.size]
-    console.log(material, size)
     return prices[material][size]
   }
 
