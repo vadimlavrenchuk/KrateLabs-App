@@ -102,19 +102,19 @@ export const store = new class Store {
   }
 
   @computed get price() {
-    let materialFactor = {
-      1: 1,
-      2: 0.5
+    const prices = {
+      'Photo Film': {
+        'Medium': 400,
+        'Large': 600,
+        'X-Large': 800
+      },
+      'Acrylic': {
+        'Medium': 500,
+        'Large': 800,
+        'X-Large': 1200
+      }
     }
-    let sizeFactor = {
-      1: 450,
-      2: 550,
-      3: 650
-    }
-    // # Variants
-    // this.size = (1: Medium, 2: Large, 3: X-Large)
-    // this.material = (1: Acrylic, 2: Photo Film)
-    return sizeFactor[this.size] * materialFactor[this.material]
+    return prices[this.material][this.size]
   }
 
   listenerResize(e) {
