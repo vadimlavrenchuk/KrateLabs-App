@@ -10,14 +10,13 @@ export function formatPayload(payload) {
 
 
 export default class Addxy {
-  headers = new Headers({
-    'Accept': 'application/json',
-    'Content-Type': "application/x-www-form-urlencoded",
-    'Access-Control-Allow-Origin': '*',
-    'Cache-Control': 'no-cache'
-  });
-
   constructor() {
+    this.headers = new Headers({
+      'Accept': 'application/json',
+      'Content-Type': "application/x-www-form-urlencoded",
+      'Access-Control-Allow-Origin': '*',
+      'Cache-Control': 'no-cache'
+    });
   }
 
   formatFormData(payload) {

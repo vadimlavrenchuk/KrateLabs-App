@@ -41,7 +41,13 @@ export const store = new class Store {
   sizeTable = {
     1: {1: '24" x 18"', 2: '18" x 24"'},
     2: {1: '36" x 24"', 2: '24" x 36"'},
-    3: {1: '42" x 36"', 2: '36" x 48"'}
+    3: {1: '48" x 36"', 2: '36" x 48"'}
+  }
+
+  sizeTableName = {
+    1: 'Medium',
+    2: 'Large',
+    3: 'X-Large'
   }
 
   materialTable = {
@@ -114,7 +120,10 @@ export const store = new class Store {
         'X-Large': 1200
       }
     }
-    return prices[this.material][this.size]
+    const material = this.materialTable[this.material]
+    const size = this.sizeTableName[this.size]
+    console.log(material, size)
+    return prices[material][size]
   }
 
   listenerResize(e) {
