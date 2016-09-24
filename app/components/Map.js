@@ -41,20 +41,19 @@ export default class Map extends React.Component {
   componentDidMount() {
     mapboxgl.accessToken = store.token
     if (!mapboxgl.supported()) {
-        alert('Your browser does not support Mapbox GL');
-    } else {
-        const map = new mapboxgl.Map({
-          container: store.mapId,
-          style: store.styleTable[store.style],
-          center: [store.lng, store.lat],
-          bearing: store.bearing,
-          pitch: store.pitch,
-          zoom: store.zoom,
-          attributionControl: false
-        })
-        window.map = map
-        this.setState({ active: true })
+        console.log('WARNING: Your browser is not officailly supported by Mapbox GL');
     }
+    const map = new mapboxgl.Map({
+      container: store.mapId,
+      style: store.styleTable[store.style],
+      center: [store.lng, store.lat],
+      bearing: store.bearing,
+      pitch: store.pitch,
+      zoom: store.zoom,
+      attributionControl: false
+    })
+    window.map = map
+    this.setState({ active: true })
     map.on('move', this.handleMove)
   }
 
