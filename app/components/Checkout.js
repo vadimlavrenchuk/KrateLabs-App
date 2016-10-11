@@ -54,7 +54,7 @@ export default class Checkout extends React.Component {
       error => { if (error) { this.setState({ active: false, error: true })}}
     )
 
-    if (product.ok) window.location = `https://kratelabs.com/products/${ product.id }`
+    if (product.ok) window.location = `https://www.kratelabs.com/products/${ product.id }`
     else { this.setState({ active: false, error: true }) }
   }
 

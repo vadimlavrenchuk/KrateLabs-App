@@ -53,15 +53,15 @@ export default class Shopify {
   }
 }
 
-async function main() {
-  let apikey = '40676c7d883263065f21a0f02e926af4'
-  let password = '1b94c846c093bee5ef1a14a65e066450'
-  const shopify = new Shopify(apikey, password)
+// async function main() {
+//   let apikey = '40676c7d883263065f21a0f02e926af4'
+//   let password = '1b94c846c093bee5ef1a14a65e066450'
+//   const shopify = new Shopify(apikey, password)
 
-  //shopify.listProducts()
-  //  .then(products => console.log(products.products))
-  shopify.createProduct(product('Denis'))
-    .then(product => console.log(product))
+//   //shopify.listProducts()
+//   //  .then(products => console.log(products.products))
+//   shopify.createProduct(product('Denis'))
+//     .then(product => console.log(product))
 
-}
-//main()
+// }
+// //main()

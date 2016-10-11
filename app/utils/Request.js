@@ -1,7 +1,9 @@
-import 'isomorphic-fetch'
 import base64 from 'base-64'
 import utf8 from 'utf8'
 import FormData from 'form-data'
+require('es6-promise').polyfill()
+require('isomorphic-fetch')
+
 
 function encodeAccount(username, password) {
   let bytes = utf8.encode(`${ username }:${ password }`)
@@ -30,7 +32,6 @@ function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
     return response
   } else {
-    return response
     var error = new Error(response.statusText)
     error.response = response
     throw error
@@ -80,21 +81,21 @@ export default class Request {
   }
 }
 
-if (require.main === module) {
-  let options = {
-    url: 'https://api.kratelabs.addxy.com/token',
-    payload: {
-      grant_type: 'client_credentials',
-      email: 'carriere.denis@gmail.com'
-    },
-    authentication: {
-      username: 'Kratelabs',
-      password: 'Kratelabs'
-    }
-  }
-  Request.post(options)
-    .then(
-      data => console.log(data),
-      error => console.log(error)
-    )
-}
+// if (require.main === module) {
+//   let options = {
+//     url: 'https://api.kratelabs.addxy.com/token',
+//     payload: {
+//       grant_type: 'client_credentials',
+//       email: 'carriere.denis@gmail.com'
+//     },
+//     authentication: {
+//       username: 'Kratelabs',
+//       password: 'Kratelabs'
+//     }
+//   }
+//   Request.post(options)
+//     .then(
+//       data => console.log(data),
+//       error => console.log(error)
+//     )
+// }

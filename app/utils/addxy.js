@@ -52,21 +52,3 @@ export default class Addxy {
     })
   }
 }
-
-async function main() {
-  let payload = {
-    access_token: 'pk.eyJ1IjoiYWRkeHkiLCJhIjoiY2lsdmt5NjZwMDFsdXZka3NzaGVrZDZtdCJ9.ZUE-LebQgHaBduVwL68IoQ',
-    lat: 43.64305,
-    lng: -79.37412,
-    zoom: 12.0,
-    bearing: 0,
-    pitch: 0,
-    email: 'test@email.com',
-    name: 'Cool File'
-  }
-  const addxy = new Addxy()
-  addxy.createProduct(payload)
-    .catch(error => console.log(error))
-    .then(product => console.log(product))
-    .catch(error => console.log(error))
-}

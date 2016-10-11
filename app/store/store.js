@@ -2,11 +2,9 @@ import { observable, computed } from 'mobx'
 import validator from 'validator'
 
 export const store = new class Store {
-  // API
-  api_url = 'https://api.kratelabs.com'
   @observable svg = ''
   @observable png = ''
-  
+
   // HTML
   @observable height = window.innerHeight
   @observable width = window.innerWidth
@@ -68,6 +66,7 @@ export const store = new class Store {
   lightBlue = '#ACC6CB'
 
   constructor() {
+    this.api_url = 'https://api.kratelabs.com'
     window.addEventListener('resize', this.listenerResize.bind(this))
   }
 

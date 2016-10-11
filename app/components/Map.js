@@ -4,7 +4,6 @@ import { observer } from 'mobx-react'
 import { store } from '../store'
 
 function fixLongitude(lng) {
-  console.log(lng)
   // Positive
   if (lng > 180) {
     // West
@@ -54,7 +53,7 @@ export default class Map extends React.Component {
     })
     window.map = map
     this.setState({ active: true })
-    map.on('move', this.handleMove)
+    map.on('moveend', this.handleMove)
   }
 
   handleMove(e) {
