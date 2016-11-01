@@ -43,14 +43,14 @@ export const store = new class Store {
   }
 
   sizeTableName = {
-    1: 'Medium',
-    2: 'Large',
-    3: 'X-Large'
+    1: '24" x 18"',
+    2: '36" x 24"',
+    3: '48" x 36"'
   }
 
   materialTable = {
     1: 'Acrylic',
-    2: 'Photo Film'
+    2: 'Backlit Film'
   }
 
   orientationTable = {
@@ -108,15 +108,15 @@ export const store = new class Store {
 
   @computed get price() {
     const prices = {
-      'Photo Film': {
-        'Medium': 400,
-        'Large': 600,
-        'X-Large': 800
+      'Backlit Film': {
+        '24" x 18"': 400,
+        '36" x 24"': 600,
+        '48" x 36"': 975
       },
       'Acrylic': {
-        'Medium': 500,
-        'Large': 800,
-        'X-Large': 1200
+        '24" x 18"': 500,
+        '36" x 24"': 800,
+        '48" x 36"': 1200
       }
     }
     const material = this.materialTable[this.material]
